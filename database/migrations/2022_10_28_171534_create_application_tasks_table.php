@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('application_tasks', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('category')->nullable();
-            $table->foreignId('assignee_id')->default(1)->constrained('users');
-            $table->string('priority')->nullable();
-            $table->date('due_date')->nullable();
-            $table->time('due_time')->nullable();
+            $table->foreignId('application_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('task_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('application_tasks');
     }
 };

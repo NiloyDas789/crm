@@ -25,7 +25,7 @@ class TaskSeeder extends Seeder
 
         for ($i=0; $i < count($task) ; $i++) {
             Task::create([
-                'name'      => $task[$i],
+                'title'      => $task[$i],
             ]);
         }
     }

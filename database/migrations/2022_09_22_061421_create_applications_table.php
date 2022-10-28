@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('note_title')->nullable();
             $table->string('note_description')->nullable();
             $table->foreignId('assignee_id')->nullable()->constrained('users')->cascadeOnDelete();
-            $table->string('application_form_id');
+            $table->string('application_form_id')->nullable();
             $table->timestamps();
         });
     }

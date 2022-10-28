@@ -11,5 +11,6 @@ class Document extends Model
     protected $fillable = [
       'url',
       'application_id',
+      'task_id',
     ];
 }

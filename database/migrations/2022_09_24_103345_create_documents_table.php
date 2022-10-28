@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('url');
             $table->foreignId('application_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('task_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
