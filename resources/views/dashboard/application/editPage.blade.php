@@ -132,118 +132,26 @@
                     <div class="tab-content p-3">
                         <div class="tab-pane active" id="custom-activities" role="tabpanel">
                             <ul class="list-group">
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
+                                @foreach($tasks as $task)
+                                    <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
+                                        <div class=" d-flex  gap-2">
+                                            <div class="bg-white rounded">
+                                                <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
+                                            </div>
+                                            <div>
+                                                {{$task->title}}
+                                            </div>
                                         </div>
-                                        <div>
-                                            Application
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
+
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
+                                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
                                         </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            Offer Letter
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            Fee Payment
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            COE
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            Visa Application
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            Enrollment
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
-                                <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
-                                    <div class=" d-flex  gap-2">
-                                        <div class="bg-white rounded">
-                                            <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
-                                        </div>
-                                        <div>
-                                            Course Ongoing
-                                        </div>
-                                    </div>
-                                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic outlined example">
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Note"><i class="mdi mdi-file-document-multiple"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Document"><i class="mdi mdi-note-plus"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endforeach
+
                             </ul>
                         </div>
                         <div class="tab-pane" id="custom-documents" role="tabpanel">

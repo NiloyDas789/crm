@@ -10,6 +10,7 @@ use App\Models\Dashboard\Country;
 use App\Models\Dashboard\Office;
 use App\Models\Dashboard\Partner;
 use App\Models\Dashboard\Product;
+use App\Models\Dashboard\Task;
 use App\Models\Dashboard\Workflow;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class ApplicationController extends Controller
         $this->checkPermission('application.access');
         $client         = Client::findOrFail($id)->with('applications','applications.product','city.state.country')->first();
 //        dd($client->first_name);
-        $workflows     = Workflow::pluck('name','id');
+        $workflows    = Workflow::pluck('name','id');
         $partners     = Partner::pluck('name','id');
         $branches     = Branch::pluck('name','id');
         $products     = Product::pluck('name','id');
@@ -98,7 +99,8 @@ class ApplicationController extends Controller
     {
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications','applications.product','city.state.country')->first();
-        return view('dashboard.application.edit', compact('application','client'));
+        $tasks        = Task::get();
+        return view('dashboard.application.edit', compact('application','client','tasks'));
     }
 
     /**
