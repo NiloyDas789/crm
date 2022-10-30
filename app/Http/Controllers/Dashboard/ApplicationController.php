@@ -7,6 +7,8 @@ use App\Models\Dashboard\Application;
 use App\Models\Dashboard\Branch;
 use App\Models\Dashboard\Client;
 use App\Models\Dashboard\Country;
+use App\Models\Dashboard\Document;
+use App\Models\Dashboard\Note;
 use App\Models\Dashboard\Office;
 use App\Models\Dashboard\Partner;
 use App\Models\Dashboard\Product;
@@ -113,7 +115,22 @@ class ApplicationController extends Controller
     public function update(Request $request, Application $application)
     {
         $this->checkPermission('application.update');
-        // dd($request->all());
+//         dd($request->all());
+
+        if ($request->has('url')){
+            Document::create([
+                'url' =>  uploadFile($request->file('url'), 'application/document'),
+                'application_id' => $request->application_id,
+                'task_id' => $request->task_id,
+            ]);
+        }
+        if ($request->has('note')){
+            Note::create([
+                'note' => $request->note,
+                'application_id' => $request->application_id,
+                'task_id' => $request->task_id,
+            ]);
+        }
         $validated = $request->validate([
             'client_id'             => [ 'integer','required'],
             'workflow_id'           => [ 'integer','nullable'],
@@ -134,8 +151,10 @@ class ApplicationController extends Controller
         if ($request->is_active==null) {
             $validated['is_active'] = '0';
         }
+        if (!empty($validated)){
+            $application->update($validated);
+        }
 
-        $application->update($validated);
 
         return redirect()-back()->with('success', 'Application updated successfully.');
     }
