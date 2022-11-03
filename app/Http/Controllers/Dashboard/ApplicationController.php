@@ -102,7 +102,9 @@ class ApplicationController extends Controller
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications','applications.product','city.state.country')->first();
         $tasks        = Task::get();
-        return view('dashboard.application.edit', compact('application','client','tasks'));
+        $documents = Document::get();
+        $notes = Note::get();
+        return view('dashboard.application.edit', compact('application','client','tasks','documents','notes'));
     }
 
     /**

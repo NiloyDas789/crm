@@ -7,18 +7,18 @@
     </tr>
     </thead>
     <tbody>
-    @foreach ($branches as $agent)
+    @foreach ($branches as $branch)
         <tr>
-            <td>{{ $agent->sl}}</td>
-            <td>{{ $agent->name }}</td>
+            <td>{{ $branch->sl}}</td>
+            <td>{{ $branch->name }}</td>
             <td nowrap="nowrap">
-                {{-- <a class="btn btn-info" href="{{ route('agent.show', $agent->id) }}"><i class="fas fa-eye"></i></a> --}}
+                {{-- <a class="btn btn-info" href="{{ route('branch.show', $branch->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}
                 <button type="button" class="btn btn-primary btn-md waves-effect waves-light"
-                        data-bs-toggle="modal" data-bs-target="#edit{{$agent->id}}"><i
+                        data-bs-toggle="modal" data-bs-target="#edit{{$branch->id}}"><i
                         class="fas fa-edit"></i></button>
                 <!-- sample modal content -->
-                <div id="edit{{$agent->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                <div id="edit{{$branch->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
                      aria-labelledby="editLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -27,7 +27,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                             </div>
-                            {{ Form::model($agent, ['route' => ['agent.update', $agent->id], 'method' => 'PUT', 'class' => 'needs-validation', 'novalidate']) }}
+                            {{ Form::model($branch, ['route' => ['branch.update', $branch->id], 'method' => 'PUT', 'class' => 'needs-validation', 'novalidate']) }}
                             <div class="modal-body">
                                 @if ($errors->any())
                                     <div class="alert alert-danger">
@@ -52,7 +52,7 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div><!-- /.modal -->
-                {{ Form::open(['method' => 'DELETE', 'route' => ['agent.destroy', $agent->id], 'style' => 'display:inline']) }}
+                {{ Form::open(['method' => 'DELETE', 'route' => ['branch.destroy', $branch->id], 'style' => 'display:inline']) }}
                 {{ Form::button('<i class="fas fa-trash"  aria-hidden="true"></i>', ['class' => 'btn btn-danger btm-md', 'type' => 'submit']) }}
                 {{ Form::close() }}
             </td>

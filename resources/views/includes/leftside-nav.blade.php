@@ -113,14 +113,6 @@
                     </a>
                 </li>
                 @endcan
-                @can('status.access')
-                <li>
-                    <a href="{{route('client.index')}}" class="waves-effect {{ request()->is('client') ? 'mm-active' : null }}">
-                        <i class="mdi mdi-lan"></i>
-                        <span>Applications</span>
-                    </a>
-                </li>
-                @endcan
                 @can('workflow.access')
                 <li>
                     <a href="{{route('workflow.index')}}" class="waves-effect {{ request()->is('workflow') ? 'mm-active' : null }}">
