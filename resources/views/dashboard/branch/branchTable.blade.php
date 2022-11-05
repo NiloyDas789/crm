@@ -3,6 +3,9 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Email') }}</th>
+        <th>{{ __('City') }}</th>
+        <th>{{ __('Created At') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +14,9 @@
         <tr>
             <td>{{ $branch->sl}}</td>
             <td>{{ $branch->name }}</td>
+            <td>{{ $branch->email }}</td>
+            <td>{{ $branch->city->name ?? '' }}</td>
+            <td>{{ $branch->created_at->format('Y-m-d') }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('branch.show', $branch->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

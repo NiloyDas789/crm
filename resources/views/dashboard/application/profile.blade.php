@@ -42,11 +42,14 @@
                 </div>
                 <div>
                     <div>Address:</div>
-                    <div>{{$client->street}},{{$client->city->state->country->name}}</div>
+                    <div>{{$client->street ?? ''}},
+                    </div>
                 </div>
                 <div>
                     <div>Visa Expiry:</div>
-                    <div>{{$client->street}},{{$client->city->state->country->name}}</div>
+                    <div>
+                        {{$client->visa_expiry_date}},
+                    </div>
                 </div>
             </div>
         </div>

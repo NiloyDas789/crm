@@ -3,6 +3,8 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Partner') }}</th>
+        <th>{{ __('Branch') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -10,6 +12,8 @@
     @foreach ($products as $product)
         <tr>
             <td>{{ $product->sl}}</td>
+            <td>{{ $product->name }}</td>
+            <td>{{ $product->name }}</td>
             <td>{{ $product->name }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('product.show', $product->id) }}"><i class="fas fa-eye"></i></a> --}}

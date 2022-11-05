@@ -3,6 +3,7 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Created At') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +12,7 @@
         <tr>
             <td>{{ $productType->sl}}</td>
             <td>{{ $productType->name }}</td>
+            <td>{{ $productType->created_at->format('Y-m-d') }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('productType.show', $productType->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

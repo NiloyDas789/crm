@@ -47,7 +47,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->checkPermission('product.store');
+        // $this->checkPermission('product.store');
         $validated = $request->validate([
             'name'                  => ['required', 'string', 'max:255'],
             'partner_id'            => ['integer','nullable'],
