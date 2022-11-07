@@ -3,6 +3,9 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Title') }}</th>
+        <th>{{ __('Purpose') }}</th>
+        <th>{{ __('Date & Time') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +14,9 @@
         <tr>
             <td>{{ $appointment->sl}}</td>
             <td>{{ $appointment->name }}</td>
+            <td>{{ $appointment->title }}</td>
+            <td>{{ $appointment->purpose }}</td>
+            <td>{{ $appointment->purpose }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('appointment.show', $appointment->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

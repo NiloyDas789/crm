@@ -1,31 +1,33 @@
 <?php
 
-use App\Http\Controllers\Dashboard\AgentController;
-use App\Http\Controllers\Dashboard\ApplicationController;
-use App\Http\Controllers\Dashboard\AppointmentController;
-use App\Http\Controllers\Dashboard\BranchController;
-use App\Http\Controllers\Dashboard\CategoryController;
-use App\Http\Controllers\Dashboard\CityController;
-use App\Http\Controllers\Dashboard\ClientController;
-use App\Http\Controllers\Dashboard\ContactController;
-use App\Http\Controllers\Dashboard\CountryController;
-use App\Http\Controllers\Dashboard\EnquryController;
-use App\Http\Controllers\Dashboard\OfficeCheckinController;
-use App\Http\Controllers\Dashboard\OfficeController;
-use App\Http\Controllers\Dashboard\PartnerController;
-use App\Http\Controllers\Dashboard\PartnerTypeController;
-use App\Http\Controllers\Dashboard\ProductController;
-use App\Http\Controllers\Dashboard\ProductTypeController;
-use App\Http\Controllers\Dashboard\RevenueTypeController;
-use App\Http\Controllers\Dashboard\StateController;
-use App\Http\Controllers\Dashboard\StatusController;
-use App\Http\Controllers\Dashboard\TaskController;
-use App\Http\Controllers\Dashboard\WorkflowController;
-use App\Http\Controllers\User\CompanySettingController;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\User\RoleController;
 use App\Http\Controllers\User\UserController;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\CityController;
+use App\Http\Controllers\Dashboard\TaskController;
+use App\Http\Controllers\Dashboard\AgentController;
+use App\Http\Controllers\Dashboard\StateController;
+use App\Http\Controllers\Dashboard\BranchController;
+use App\Http\Controllers\Dashboard\ClientController;
+use App\Http\Controllers\Dashboard\EnquryController;
+use App\Http\Controllers\Dashboard\OfficeController;
+use App\Http\Controllers\Dashboard\StatusController;
+use App\Http\Controllers\Dashboard\ContactController;
+use App\Http\Controllers\Dashboard\CountryController;
+use App\Http\Controllers\Dashboard\PartnerController;
+use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\WorkflowController;
+use App\Http\Controllers\User\CompanySettingController;
+use App\Http\Controllers\Dashboard\ApplicationController;
+use App\Http\Controllers\Dashboard\AppointmentController;
+use App\Http\Controllers\Dashboard\PartnerTypeController;
+use App\Http\Controllers\Dashboard\ProductTypeController;
+use App\Http\Controllers\Dashboard\RevenueTypeController;
+use App\Http\Controllers\Dashboard\OfficeCheckinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +70,20 @@ Route::resource('contact',ContactController::class)->except('create','edit','sho
     Route::post('workflow-search',[ WorkflowController::class ,'search'])->name('workflow.search');
     Route::resource('workflow',WorkflowController::class)->except('create','edit','show');
 
+    Route::get('download/{document}',[ApplicationController::class, 'downloadD']);
+
     Route::post('application-search',[ ApplicationController::class ,'search'])->name('application.search');
     Route::get('application/{id}',[ApplicationController::class,'index'])->name('application.index');
     Route::resource('application',ApplicationController::class)->except('index','create');
+
+
+    // Route::get('download/{file_name}',function($file_name){
+    //     return $file_name;
+    //         $file = Storage::disk('public')->get($file_name);
+      
+    //         return (new Response($file, 200))
+    //               ->header('Content-Type', 'image/jpeg');
+    // }); 
 
 
     Route::post('revenue-type-search',[ RevenueTypeController::class ,'search'])->name('revenueType.search');
@@ -119,7 +132,8 @@ Route::resource('contact',ContactController::class)->except('create','edit','sho
     Route::resource('city',CityController::class)->except('create','edit','show');
 
     Route::post('client-search',[ ClientController::class ,'search'])->name('client.search');
-    Route::resource('client',ClientController::class)->except('create','edit','show');
+    Route::resource('client',ClientController::class);
+                // ->except('create','edit','show','store');
 
     Route::post('task-search',[ TaskController::class ,'search'])->name('task.search');
     Route::resource('task',TaskController::class)->except('create','edit','show');

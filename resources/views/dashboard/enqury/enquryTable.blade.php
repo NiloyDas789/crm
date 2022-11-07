@@ -3,6 +3,9 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Email') }}</th>
+        <th>{{ __('Mobile') }}</th>
+        <th>{{ __('Comments') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +14,9 @@
         <tr>
             <td>{{ $enqury->sl}}</td>
             <td>{{ $enqury->name }}</td>
+            <td>{{ $enqury->email }}</td>
+            <td>{{ $enqury->mobile }}</td>
+            <td>{{ \Str::limit($enqury->comment, 15) }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('enqury.show', $enqury->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

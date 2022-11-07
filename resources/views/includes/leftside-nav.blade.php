@@ -299,15 +299,15 @@
                 {{-- </ul>--}}
                 {{-- </li>--}}
                 {{-- @endcan--}}
-                {{-- @can('settings.access')--}}
-                {{-- <li>--}}
-                {{-- <a href="{{ route('company.edit') }}"--}}
-                {{-- class="waves-effect {{ request()->is('settings/company-settings') ? 'mm-active' : null }}">--}}
-                {{-- <i class="mdi mdi-cog-outline"></i>--}}
-                {{-- <span>Company Setting</span>--}}
-                {{-- </a>--}}
-                {{-- </li>--}}
-                {{-- @endcan--}}
+                @can('settings.access')
+                 <li>
+                 <a href="{{ route('company.edit') }}"
+                 class="waves-effect {{ request()->is('settings/company-settings') ? 'mm-active' : null }}">
+                 <i class="mdi mdi-cog-outline"></i>
+                 <span>Company Setting</span>
+                 </a>
+                 </li>
+                 @endcan
             </ul>
         </div>
         <!-- Sidebar -->

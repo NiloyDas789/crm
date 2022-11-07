@@ -13,4 +13,9 @@ class Document extends Model
       'application_id',
       'task_id',
     ];
+
+    public function tasks()
+    {
+        return $this->belongsTo(Task::class,'task_id', 'id');
+    }
 }

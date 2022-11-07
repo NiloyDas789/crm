@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('related_id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('partner_id')->nullable()->constrained()->cascadeOnDelete()();
             $table->foreignId('time_zone_id')->constrained()->cascadeOnDelete();
             $table->date('date');
             $table->timestamp('time');

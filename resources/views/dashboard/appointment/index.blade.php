@@ -139,6 +139,18 @@
             })
         })
     </script>
+    <script>
+        $('.relatedTo').on('change', function (e){
+            let relatedTo = $(this).val(); // 1= client , 2 = partner
+            if(relatedTo == 1){
+                $('#client').show()
+            }
+            if(relatedTo == 2{
+                $('#partner').show()
+            }
+
+        })
+    </script>
 
 
 

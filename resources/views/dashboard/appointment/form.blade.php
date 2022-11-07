@@ -4,7 +4,7 @@
         <div class="form-group{{ $errors->has('related_id') ? ' has-error' : '' }} mb-3">
             {{ Form::label('related_id', 'Related To', ['class' => 'col-sm-6 control-label']) }}
             <div class="col-sm-9">
-                {{ Form::select('related_id', ['1'=>'Client','2'=>'Partner'], null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                {{ Form::select('related_id', ['1'=>'Client','2'=>'Partner'], null, ['class' => 'form-control select2 relatedTo', 'style'=>'width: 100%', 'required' => 'required']) }}
                 <small class="text-danger">{{ $errors->first('related_id') }}</small>
 
             </div>
@@ -23,12 +23,28 @@
 
 </div>
 <div class="row">
-    <div class="col-6">
+    <div class="col-6" id="client">
         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }} mb-3">
             {{ Form::label('client_id', 'Client Id', ['class' => 'col-sm-6 control-label']) }}
             <div class="row">
                 <div class="col-sm-9">
-                    {{ Form::select('client_id', [], null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                    <small class="text-danger">{{ $errors->first('client_id') }}</small>
+
+                </div>
+                <div class="col-sm-3">
+                    <a href="{{route('client.index')}}" class="btn btn-primary"><i class="mdi mdi-plus"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-6" id="partner" >
+        <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }} mb-3">
+            {{ Form::label('client_id', 'Partner Id', ['class' => 'col-sm-6 control-label']) }}
+            <div class="row">
+                <div class="col-sm-9">
+                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
                     <small class="text-danger">{{ $errors->first('client_id') }}</small>
 
                 </div>

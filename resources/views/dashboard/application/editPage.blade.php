@@ -157,13 +157,23 @@
                                 <tr>
                                     <th>{{ __('ID')}}</th>
                                     <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Images') }}</th>
+                                    <th>{{ __('Action') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($documents as $key=>$document)
                                     <tr>
                                         <td>{{ $key+1}}</td>
-                                        <td>{{ $document->url }}</td>
+                                        <td>
+                                            {{ $document->tasks->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            <img src="{{asset('storage/' . $document->url) }}" class="img-rounded" width="50px" alt="">
+                                        </td>
+                                        <td>
+                                            <a href="{{ url('/download') }}/{{$document->id}}" class="btn btn-dark btn-sm">Download</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -175,13 +185,15 @@
                                 <thead>
                                 <tr>
                                     <th>{{ __('ID')}}</th>
-                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Task Type') }}</th>
+                                    <th>{{ __('Note') }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($notes as $key=>$note)
                                     <tr>
                                         <td>{{ $key+1}}</td>
+                                        <td>{{ $note->tasks->title ?? '' }}</td>
                                         <td>{{ $note->note }}</td>
                                     </tr>
                                 @endforeach
@@ -230,32 +242,28 @@
                                 {!! Form::date('date', null, ['class' => 'form-control', 'required' => 'required']) !!}
                             </div>
                         </div>
-                        <div class="border p-1">
+                        <div class="col-12 mr-4 mt-4 font-bold font-weight-bold">
+                                <div class="row">
+                                    <div class="col-12 border"><b>Start</b></div>
+                                    <div class="col-12 border">
+                                        <div>
+                                            {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
+                                            'required']) !!}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-12 mr-4 mt-4 font-bold font-weight-bold">
-                                <div class="row d-flex justify-content-around">
-                                    <div class="col-3 border"><b>Start</b> </div>
-                                    <div class="col-3 border"><b>End</b></div>
-                                </div>
-                            </div>
-                            <div class="col-12 mr-4 mb-4 font-bold  ">
-                                <div class="row d-flex justify-content-around ">
-                                    <div class="col-3 border p-1">
-                                        <div class="text-center font-bold">+</div>
+                                <div class="row">
+                                    <div class="col-12 border"><b>End</b></div>
+                                    <div class="col-12 border">
                                         <div>
-                                            {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
-                                            'required']) !!}
-                                        </div>
-                                    </div>
-                                    <div class="col-3 border p-1">
-                                        <div class="text-center font-bold">+</div>
-                                        <div>
-                                            {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
+                                        {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
                                             'required']) !!}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         <hr />
                         <div class="col-12 d-flex justify-content-center my-4">
                             @include('dashboard.application.paymentSchedule')

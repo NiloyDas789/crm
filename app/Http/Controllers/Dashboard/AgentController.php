@@ -60,7 +60,7 @@ class AgentController extends Controller
             'office_id'             => ['integer','nullable'],
         ]);
 
-        $validated['image'] = uploadFile($request->file('image'), 'agent/image');
+        $validated['image'] = $request->file('image') ? uploadFile($request->file('image'), 'agent/image') : 'default.png';
 
 
         Agent::create($validated);

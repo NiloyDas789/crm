@@ -1,8 +1,12 @@
-<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap">
+<table id="datatable" class="table table-striped table-bordered dt-responsive nowrap table-sm table-hover">
     <thead>
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Office') }}</th>
+        <th>{{ __('Phone') }}</th>
+        <th>{{ __('Email') }}</th>
+        <th>{{ __('Agent Type') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +15,17 @@
         <tr>
             <td>{{ $agent->sl}}</td>
             <td>{{ $agent->name }}</td>
+            <td>
+                <ul>
+                    <li><b>Name : </b>{{ $agent->office->name }}</li>
+                    <li><b>Street : </b> {{ $agent->office->street  }}</li>
+                    <li> <b>Email : </b> {{ $agent->office->email  }}</li>
+                    <li> <b>Mobile : </b>{{ $agent->office->mobile  }}</li>
+                </ul>
+            </td>
+            <td>{{ $agent->phone }}</td>
+            <td>{{ $agent->email }}</td>
+            <td>{{ $agent->agent_type }}</td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('agent.show', $agent->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}
