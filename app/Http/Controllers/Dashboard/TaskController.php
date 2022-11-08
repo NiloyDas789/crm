@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Category;
+use App\Models\Dashboard\Country;
+use App\Models\Dashboard\Office;
 use App\Models\Dashboard\Priority;
 use App\Models\Dashboard\Task;
 use App\Models\User\User;
@@ -23,8 +25,10 @@ class TaskController extends Controller
         $categories = Category::pluck('name','id');
         $assignees = User::pluck('name','id');
         $priorities = Priority::pluck('name','id');
+        $offices = Office::pluck('name','id');
+        $countries = Country::pluck('name','id');
         $this->putSL($tasks);
-        return view('dashboard.task.index', compact('tasks','categories','assignees','priorities'));
+        return view('dashboard.task.index', compact('tasks','categories','assignees','priorities','offices','countries'));
     }
     /**
      * Show the form for creating a new resource.

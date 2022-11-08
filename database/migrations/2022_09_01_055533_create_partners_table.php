@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('fax');
             $table->string('website');
-            $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('office_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

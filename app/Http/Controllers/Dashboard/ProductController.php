@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Branch;
+use App\Models\Dashboard\Office;
 use App\Models\Dashboard\Partner;
 use App\Models\Dashboard\Product;
 use App\Models\Dashboard\ProductType;
@@ -22,11 +23,11 @@ class ProductController extends Controller
         $this->checkPermission('product.access');
         $products          = Product::paginate(10);
         $partners          = Partner::pluck('name','id');
-        $branches          = Branch::pluck('name','id');
+        $offices         = Office::pluck('name','id');
         $productTypes      = ProductType::pluck('name','id');
         $revenueTypes      = RevenueType::pluck('name','id');
         $this->putSL($products);
-        return view('dashboard.product.index', compact('products','partners','branches','productTypes','revenueTypes'));
+        return view('dashboard.product.index', compact('products','partners','offices','productTypes','revenueTypes'));
     }
     /**
      * Show the form for creating a new resource.
@@ -51,7 +52,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name'                  => ['required', 'string', 'max:255'],
             'partner_id'            => ['integer','nullable'],
-            'branch_id'             => ['integer','nullable'],
+            'office_id'             => ['integer','nullable'],
             'product_type_id'       => ['integer','nullable'],
             'revenue_type_id'       => ['integer','nullable'],
             'duration'              => ['string'],
@@ -103,7 +104,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'name'                  => ['required', 'string', 'max:255'],
             'partner_id'            => ['integer','nullable'],
-            'branch_id'             => ['integer','nullable'],
+            'office_id'             => ['integer','nullable'],
             'product_type_id'       => ['integer','nullable'],
             'revenue_type_id'       => ['integer','nullable'],
             'duration'              => ['string'],

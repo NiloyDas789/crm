@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Branch;
 use App\Models\Dashboard\Category;
 use App\Models\Dashboard\Currency;
+use App\Models\Dashboard\Office;
 use App\Models\Dashboard\Partner;
 use App\Models\Dashboard\Country;
 use App\Models\Dashboard\PartnerType;
@@ -27,10 +28,10 @@ class PartnerController extends Controller
         $partnerTypes           = PartnerType::pluck('name','id');
         $serviceWorkflows      = ['serviceWorkflows','serviceWorkflows1','serviceWorkflows2','serviceWorkflows3','serviceWorkflows4',];
         $currencies            = Currency::pluck('name','id');
-        $branches              = Branch::pluck('name','id');
+        $offices              = Office::pluck('name','id');
 
         $this->putSL($partners);
-        return view('dashboard.partner.index', compact('partners','countries','categories','partnerTypes','serviceWorkflows','currencies','branches'));
+        return view('dashboard.partner.index', compact('partners','countries','categories','partnerTypes','serviceWorkflows','currencies','offices'));
     }
     /**
      * Show the form for creating a new resource.
@@ -69,7 +70,7 @@ class PartnerController extends Controller
             'email'                             => ['required', 'string'],
             'fax'                               => ['required', 'string'],
             'website'                           => ['required', 'string'],
-            'branch_id'                         => ['required', 'integer'],
+            'office_id'                         => ['required', 'integer'],
 
         ]);
 
@@ -138,7 +139,7 @@ class PartnerController extends Controller
             'email'                             => ['required', 'string'],
             'fax'                               => ['required', 'string'],
             'website'                           => ['required', 'string'],
-            'branch_id'                         => ['required', 'integer'],
+            'office_id'                         => ['required', 'integer'],
         ]);
 
 

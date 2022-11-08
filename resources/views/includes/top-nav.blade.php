@@ -3,21 +3,22 @@ G<header id="page-topbar">
         <div class="d-flex">
             <!-- LOGO -->
             <div class="navbar-brand-box text-center">
-                <a href="index.html" class="logo logo-dark">
+                <a href="/" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{asset('/')}}assets/images/logo-sm.png" alt="logo-sm-dark" height="22">
+                        <img src="{{asset('/storage/'.company()->logo)}}" alt="logo-sm-dark" height="22">
+
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('/')}}assets/images/logo-dark.png" alt="logo-dark" height="24">
+                        <img src="" alt="logo-dark" height="24">
                     </span>
                 </a>
 
-                <a href="index.html" class="logo logo-light">
+                <a href="/" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{asset('/')}}assets/images/logo-sm.png" alt="logo-sm-light" height="22">
+                        <img src="{{asset('/storage/'.company()->logo)}}" alt="logo-sm-light" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('/')}}assets/images/logo-light.png" alt="logo-light" height="24">
+                        <img src="{{asset('/storage/'.company()->logo)}}" alt="logo-light" height="24">
                     </span>
                 </a>
             </div>
@@ -256,7 +257,10 @@ G<header id="page-topbar">
                     <a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock screen</a> --}}
                     {{-- <div class="dropdown-divider"></div> --}}
                     <a class="dropdown-item text-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                    document.getElementById('logout-form').submit();"><i class="ri-shut-down-line align-middle me-1 text-danger"></i>
+                        Logout
+
+                    </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>

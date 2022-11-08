@@ -25,7 +25,7 @@ class Partner extends Model
       'email',
       'fax',
       'website',
-      'branch_id',
+      'office_id',
     ];
 
 
@@ -41,8 +41,8 @@ class Partner extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function branch(){
-        return $this->belongsTo(Branch::class);
+    public function office(){
+        return $this->belongsTo(Office::class);
     }
 
     public function products(){

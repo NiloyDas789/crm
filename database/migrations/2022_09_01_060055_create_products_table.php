@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('partner_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('branch_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('office_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_type_id')->constrained()->cascadeOnDelete();
             $table->foreignId('revenue_type_id')->constrained()->cascadeOnDelete();
             $table->string('duration');

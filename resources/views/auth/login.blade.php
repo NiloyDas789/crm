@@ -62,13 +62,13 @@
 @section('content')
     <div class="col-xl-4 col-lg-6 col-md-8">
         <div class="card">
-            <div class="card-body p-4">
+            <div class="card-body p-4" style="background-color: #000000">
                 <div class="">
                     <div class="text-center">
-                        <a href="index.html" class="">
-                            <img src="{{ asset('') }}/assets/images/logo-dark.png" alt="" height="24"
+                        <a href="/" class="">
+                            <img src="{{asset('/storage/'.company()->logo)}}" alt="" height="24"
                                 class="auth-logo logo-dark mx-auto">
-                            <img src="{{ asset('') }}/assets/images/logo-light.png" alt="" height="24"
+                            <img src="{{asset('/storage/'.company()->logo)}}" alt="" height="24"
                                 class="auth-logo logo-light mx-auto">
                         </a>
                     </div>

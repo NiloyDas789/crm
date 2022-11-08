@@ -111,15 +111,6 @@
                             </a>
                         </li>
                         @endcan
-                        @can('branch.access')
-                        <li>
-                            <a href="{{route('branch.index')}}" class="waves-effect {{ request()->is('branch') ? 'mm-active' : null }}">
-                                <i class="mdi mdi-account-group"></i>
-                                <span>Branches</span>
-                            </a>
-                        </li>
-                        @endcan
-
                     </ul>
                 </li>
                 @can('partner.access')

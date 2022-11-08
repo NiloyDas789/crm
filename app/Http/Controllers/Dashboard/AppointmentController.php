@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Dashboard\Appointment;
 use App\Models\Dashboard\Client;
 use App\Models\Dashboard\Country;
+use App\Models\Dashboard\Partner;
+use App\Models\Dashboard\TimeZone;
 use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
@@ -21,8 +23,10 @@ class AppointmentController extends Controller
         $appointments = Appointment::paginate(10);
         $countries = Country::pluck('name','id');
         $clients = Client::pluck('client_id','id');
+        $partners = Partner::pluck('name','id');
+        $timezone = TimeZone::pluck('name','id');
         $this->putSL($appointments);
-        return view('dashboard.appointment.index', compact('appointments','countries', 'clients'));
+        return view('dashboard.appointment.index', compact('appointments','countries', 'clients','timezone','partners'));
     }
     /**
      * Show the form for creating a new resource.
@@ -48,13 +52,17 @@ class AppointmentController extends Controller
             'related_id'        => ['integer'],
             'user_id'           => ['integer'],
             'client_id'         => ['integer'],
-            'timezone_id'       => ['string'],
+            'partner_id'         => ['integer'],
+            'time_zone_id'       => ['string'],
             'date'              => ['date'],
             'time'              => ['string'],
             'title'             => ['required', 'string', 'max:255'],
             'description'       => ['string','nullable'],
             'invitees_id'       => ['integer'],
         ]);
+        $validated['user_id'] = auth()->id();
+        $validated['invitees_id'] = 0;
+
 
         Appointment::create($validated);
 

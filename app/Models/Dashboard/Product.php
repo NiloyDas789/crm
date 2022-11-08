@@ -12,7 +12,7 @@ class Product extends Model
     protected $fillable = [
       'name',
       'partner_id',
-      'branch_id',
+      'office_id',
       'product_type_id',
       'revenue_type_id',
       'duration',
@@ -25,8 +25,8 @@ class Product extends Model
         return $this->belongsTo(Partner::class);
     }
 
-    public function branch(){
-        return $this->belongsTo(Branch::class);
+    public function office(){
+        return $this->belongsTo(Office::class);
     }
 
     public function productType(){

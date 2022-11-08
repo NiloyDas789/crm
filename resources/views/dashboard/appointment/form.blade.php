@@ -23,12 +23,12 @@
 
 </div>
 <div class="row">
-    <div class="col-6" id="client">
+    <div class="col-6" id="client" style="display: none">
         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }} mb-3">
             {{ Form::label('client_id', 'Client Id', ['class' => 'col-sm-6 control-label']) }}
             <div class="row">
                 <div class="col-sm-9">
-                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required','placeholder' => 'Select Client']) }}
                     <small class="text-danger">{{ $errors->first('client_id') }}</small>
 
                 </div>
@@ -39,12 +39,12 @@
             </div>
         </div>
     </div>
-    <div class="col-6" id="partner" >
+    <div class="col-6" id="partner" style="display: none">
         <div class="form-group{{ $errors->has('client_id') ? ' has-error' : '' }} mb-3">
             {{ Form::label('client_id', 'Partner Id', ['class' => 'col-sm-6 control-label']) }}
             <div class="row">
                 <div class="col-sm-9">
-                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                    {{ Form::select('partner_id', $partners, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required','placeholder' => 'Select Partner']) }}
                     <small class="text-danger">{{ $errors->first('client_id') }}</small>
 
                 </div>
@@ -59,7 +59,7 @@
         <div class="form-group{{ $errors->has('timezone_id') ? ' has-error' : '' }} mb-3">
             {{ Form::label('timezone_id', 'Time Zone', ['class' => 'col-sm-6 control-label']) }}
             <div class="col-sm-9">
-                {{ Form::select('timezone_id', [], null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
+                {{ Form::select('time_zone_id', $timezone, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required']) }}
                 <small class="text-danger">{{ $errors->first('timezone_id') }}</small>
 
             </div>

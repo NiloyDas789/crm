@@ -140,16 +140,21 @@
         })
     </script>
     <script>
+        $('#client').show();
         $('.relatedTo').on('change', function (e){
             let relatedTo = $(this).val(); // 1= client , 2 = partner
-            if(relatedTo == 1){
+
+            if(relatedTo == '1'){
                 $('#client').show()
+                $('#partner').hide()
             }
-            if(relatedTo == 2{
+            if(relatedTo == '2'){
+                $('#client').hide()
                 $('#partner').show()
             }
 
         })
+
     </script>
 
 
