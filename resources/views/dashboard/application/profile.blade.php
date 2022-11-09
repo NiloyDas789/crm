@@ -5,51 +5,48 @@
                 <img class="rounded-circle" src="{{asset('assets/images/users/avatar-1.jpg')}}">
             </div>
             <div>
-                <h1>{{$client->first_name}} {{$client->last_name}}</h1>
+                <h3>{{$client->first_name}} {{$client->last_name}}</h3>
             </div>
             <hr />
             <div class="text-start d-grid gap-3 fs-6">
                 <div>
-                    <h2>Personal Details:</h2>
+                    <h4>Personal Details:</h4>
                 </div>
                 <div>
                     <div>Tag(s):</div>
-                    <div>-</div>
+                    <div class="fw-bold">-</div>
                 </div>
                 <div>
                     <div>Added From:</div>
-                    <div>-</div>
+                    <div class="fw-bold">-</div>
                 </div>
                 <div>
                     <div>Client Id:</div>
-                    <div>{{$client->client_id}}</div>
+                    <div class="fw-bold">{{$client->client_id}}</div>
                 </div>
                 <div>
                     <div>Internal Id:</div>
-                    <div>{{$client->id}}</div>
+                    <div class="fw-bold">{{$client->id}}</div>
                 </div>
                 <div>
                     <div>Date of Birth:</div>
-                    <div>{{$client->dob}}</div>
+                    <div class="fw-bold">{{$client->dob}}</div>
                 </div>
                 <div>
                     <div>Phone Number:</div>
-                    <div>{{$client->phone}}</div>
+                    <div class="fw-bold">{{$client->phone}}</div>
                 </div>
                 <div>
                     <div>Email:</div>
-                    <div>{{$client->email}}</div>
+                    <div class="fw-bold">{{$client->email}}</div>
                 </div>
                 <div>
                     <div>Address:</div>
-                    <div>{{$client->street ?? ''}},
-                    </div>
+                    <div class="fw-bold">{{$client->street}},{{$client->city->state->country->name}}</div>
                 </div>
                 <div>
                     <div>Visa Expiry:</div>
-                    <div>
-                        {{$client->visa_expiry_date}},
-                    </div>
+                    <div class="fw-bold">{{$client->street}},{{$client->city->state->country->name}}</div>
                 </div>
             </div>
         </div>
