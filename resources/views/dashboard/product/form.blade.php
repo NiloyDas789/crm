@@ -103,9 +103,16 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="col-6">
+    <div class="col-6">
+        <div class="form-group{{ $errors->has('price') ? ' has-error' : '' }} mb-3">
+            {{ Form::label('price', 'Price', ['class' => 'col-sm-6 control-label','for'=>'price']) }}
+            <div class="col-sm-9">
+                {{ Form::text('price', null, ['class' => 'form-control','placeholder' => 'Enter price','id'=>'price', 'required']) }}
+                <small class="text-danger">{{ $errors->first('price') }}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
     <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }} mb-3">
         {{ Form::label('description', 'Description', ['class' => 'col-sm-6 control-label','for'=>'description']) }}
         <div class="col-sm-9">
@@ -114,4 +121,7 @@
         </div>
     </div>
 </div>
+</div>
+
+
 

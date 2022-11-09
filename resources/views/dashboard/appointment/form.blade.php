@@ -28,7 +28,7 @@
             {{ Form::label('client_id', 'Client Id', ['class' => 'col-sm-6 control-label']) }}
             <div class="row">
                 <div class="col-sm-9">
-                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required','placeholder' => 'Select Client']) }}
+                    {{ Form::select('client_id', $clients, null, ['class' => 'form-control select2', 'style'=>'width: 100%','placeholder' => 'Select Client']) }}
                     <small class="text-danger">{{ $errors->first('client_id') }}</small>
 
                 </div>
@@ -44,7 +44,7 @@
             {{ Form::label('client_id', 'Partner Id', ['class' => 'col-sm-6 control-label']) }}
             <div class="row">
                 <div class="col-sm-9">
-                    {{ Form::select('partner_id', $partners, null, ['class' => 'form-control select2', 'style'=>'width: 100%', 'required' => 'required','placeholder' => 'Select Partner']) }}
+                    {{ Form::select('partner_id', $partners, null, ['class' => 'form-control select2', 'style'=>'width: 100%','placeholder' => 'Select Partner']) }}
                     <small class="text-danger">{{ $errors->first('client_id') }}</small>
 
                 </div>

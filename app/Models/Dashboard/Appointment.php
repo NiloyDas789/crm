@@ -26,6 +26,9 @@ class Appointment extends Model
     public function client(){
         return $this->belongsTo(Client::class);
     }
+    public function partner(){
+        return $this->belongsTo(Partner::class);
+    }
 
     public function timezone(){
         return $this->belongsTo(TimeZone::class);

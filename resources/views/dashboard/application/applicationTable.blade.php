@@ -2,6 +2,9 @@
     <thead>
     <tr>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Workflows') }}</th>
+        <th>{{ __('Partner') }}</th>
+        <th>{{ __('Product') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -9,14 +12,21 @@
     @isset($client->applications)
         @foreach ($client->applications as $application)
             <tr>
-                    <td>{{ $application->product->name }}</td>
+                <td>
+                    <a href="{{ route('application.edit', $application->id) }}">
+                        {{ $application->product->name  ?? '' }}
+                    </a>
+                </td>
+                <td>{{ $application->workflow->name ?? '' }}</td>
+                <td>{{ $application->partner->name ?? '' }}</td>
+                <td>{{ $application->product->name ?? ''}}</td>
 
                 <td nowrap="nowrap">
-                     <a class="btn btn-primary btn-md waves-effect waves-light" href="{{ route('application.edit', $application->id) }}"><i class="fas fa-edit"></i></a>
+                    <a class="btn btn-primary btn-md waves-effect waves-light" href="{{ route('application.edit', $application->id) }}"><i class="fas fa-edit"></i></a>
                     {{-- Edit Modal --}}
-{{--                    <button type="button" class="btn btn-primary btn-md waves-effect waves-light"--}}
-{{--                            data-bs-toggle="modal" data-bs-target="#edit{{$application->id}}"><i--}}
-{{--                            class="fas fa-edit"></i></button>--}}
+                    {{--                    <button type="button" class="btn btn-primary btn-md waves-effect waves-light"--}}
+                    {{--                            data-bs-toggle="modal" data-bs-target="#edit{{$application->id}}"><i--}}
+                    {{--                            class="fas fa-edit"></i></button>--}}
                     <!-- sample modal content -->
                     <div id="edit{{$application->id}}" class="modal fade" tabindex="-1" role="dialog"
                          aria-labelledby="editLabel" aria-hidden="true">

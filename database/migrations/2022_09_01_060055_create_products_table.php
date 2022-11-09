@@ -16,11 +16,12 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('partner_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('partner_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('office_id')->constrained()->cascadeOnDelete();
             $table->foreignId('product_type_id')->constrained()->cascadeOnDelete();
             $table->foreignId('revenue_type_id')->constrained()->cascadeOnDelete();
             $table->string('duration');
+            $table->float('price')->nullable();
             $table->bigInteger('intake_month_id');
             $table->string('description');
             $table->string('note');

@@ -59,6 +59,7 @@ class ProductController extends Controller
             'intake_month_id'       => ['integer'],
             'description'           => ['string','nullable'],
             'note'                  => ['string','nullable'],
+            'price'                  => ['nullable'],
         ]);
 
         Product::create($validated);
@@ -111,6 +112,7 @@ class ProductController extends Controller
             'intake_month_id'       => ['integer'],
             'description'           => ['string','nullable'],
             'note'                  => ['string','nullable'],
+            'price'                  => ['nullable'],
         ]);
 
         if ($request->is_active==null) {

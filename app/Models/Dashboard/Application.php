@@ -35,6 +35,8 @@ class Application extends Model
 
     public function branch(){
         return $this->belongsTo(Branch::class);
+    } public function partner(){
+        return $this->belongsTo(Partner::class);
     }
 
     public function workflow(){

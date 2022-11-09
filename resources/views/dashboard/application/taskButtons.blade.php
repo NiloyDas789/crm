@@ -64,6 +64,6 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>
-    <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>
+{{--    <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add Date"><i class="mdi mdi-calendar-month"></i></button>--}}
+{{--    <button type="button" class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Send Email"><i class="mdi mdi-email"></i></button>--}}
 </div>

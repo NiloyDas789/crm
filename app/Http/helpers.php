@@ -41,3 +41,7 @@ function company(): CompanySetting
 {
     return CompanySetting::first();
 }
+
+function applications(){
+    return \App\Models\Dashboard\Application::query()->orderByDesc('id')->get();
+}

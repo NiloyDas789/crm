@@ -47,12 +47,14 @@ class AppointmentController extends Controller
      */
     public function store(Request $request)
     {
+//dd($request->)
         $this->checkPermission('appointment.store');
+
         $validated = $request->validate([
             'related_id'        => ['integer'],
             'user_id'           => ['integer'],
-            'client_id'         => ['integer'],
-            'partner_id'         => ['integer'],
+            'client_id'         => ['integer','nullable'],
+            'partner_id'         => ['integer','nullable'],
             'time_zone_id'       => ['string'],
             'date'              => ['date'],
             'time'              => ['string'],

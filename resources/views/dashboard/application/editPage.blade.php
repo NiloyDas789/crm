@@ -156,7 +156,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{ __('ID')}}</th>
-                                    <th>{{ __('Name') }}</th>
+                                    <th>{{ __('Task Name') }}</th>
                                     <th>{{ __('Images') }}</th>
                                     <th>{{ __('Action') }}</th>
                                 </tr>
@@ -169,7 +169,7 @@
                                             {{ $document->tasks->title ?? '' }}
                                         </td>
                                         <td>
-                                            <img src="{{asset('storage/' . $document->url) }}" class="img-rounded" width="50px" alt="">
+                                                <img src="{{asset('storage/' . $document->url) }}" class="rounded " width="50px" alt="">
                                         </td>
                                         <td>
                                             <a href="{{ url('/download') }}/{{$document->id}}" class="btn btn-dark btn-sm">Download</a>
@@ -185,7 +185,7 @@
                                 <thead>
                                 <tr>
                                     <th>{{ __('ID')}}</th>
-                                    <th>{{ __('Task Type') }}</th>
+                                    <th>{{ __('Task Name') }}</th>
                                     <th>{{ __('Note') }}</th>
                                 </tr>
                                 </thead>

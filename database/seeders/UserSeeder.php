@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
     private function createDefaultSettings()
     {
         CompanySetting::create([
-            'name'                 => 'Niloy Das  ',
+            'name'                 => 'Niloy Das',
             'mobile1'              => '01xxxxxxxxx',
             'email'                => 'info@gmail.com',
         ]);

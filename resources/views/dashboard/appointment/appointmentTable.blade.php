@@ -13,10 +13,10 @@
     @foreach ($appointments as $appointment)
         <tr>
             <td>{{ $appointment->sl}}</td>
-            <td>{{ $appointment->name }}</td>
+            <td>{{ $appointment->client->name ?? $appointment->partner->name  }}</td>
             <td>{{ $appointment->title }}</td>
-            <td>{{ $appointment->purpose }}</td>
-            <td>{{ $appointment->purpose }}</td>
+            <td>{{ \Str::limit($appointment->description, 15) }}</td>
+            <td>{{ $appointment->date }} {{  $appointment->time }} </td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('appointment.show', $appointment->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

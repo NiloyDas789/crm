@@ -19,6 +19,7 @@ class Product extends Model
       'intake_month_id',
       'description',
       'note',
+      'price',
     ];
 
     public function partner(){
