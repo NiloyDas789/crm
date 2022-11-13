@@ -23,16 +23,6 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12">
                 <div class="row mb-2">
-                    <div class="col-md-11">
-                        <div class="mx-auto pull-right">
-                            <div class="input-group mb-3">
-                                {{ Form::text('q',null,['class'=>'form-control','id'=>'q','placeholder'=>__('Search Here....')]) }}
-                                <div class="input-group-append">
-                                            <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-magnify"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-1">
                         <button type="button" class="btn btn-primary btn-md waves-effect waves-light"
                                 data-bs-toggle="modal" data-bs-target="#create">Create</button>

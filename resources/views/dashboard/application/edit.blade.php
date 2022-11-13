@@ -22,21 +22,6 @@
         <!-- end page title -->
         <div class="row d-flex justify-content-center">
             <div class="col-12">
-                <div class="row mb-2">
-                    <div class="col-md-11">
-                        <div class="mx-auto pull-right">
-                            <div class="input-group mb-3">
-                                {{ Form::text('q',null,['class'=>'form-control','id'=>'q','placeholder'=>__('Search Here....')]) }}
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="basic-addon2"><i class="mdi mdi-magnify"></i></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-
-                    </div>
-                </div>
                 @include('dashboard.application.editPage')
             </div> <!-- end col -->
         </div>
@@ -77,6 +62,17 @@
                 $(".card-body").html(e);
             })
         })
+    </script>
+
+    <script>
+        $('.checkTaskApplication').on('change', function(){
+            let id = $(this).val();
+            let applicationID = "{{$application->id}}";
+            $.get("/application-taskcheck/"+id+"/"+applicationID, function (data) {
+               location.reload();
+
+            });
+        });
     </script>
 
 @endpush

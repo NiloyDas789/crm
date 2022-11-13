@@ -2,7 +2,7 @@
     <div class="card card-body">
         <div class="text-center">
             <div class="mb-3">
-                <img class="rounded-circle" src="{{asset('assets/images/users/avatar-1.jpg')}}">
+                 <img src="{{asset('storage/' . $client->image) }}" class="rounded-circle img-fluid"  alt="">
             </div>
             <div>
                 <h3>{{$client->first_name}} {{$client->last_name}}</h3>

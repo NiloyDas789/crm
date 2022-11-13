@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
             $table->foreignId('workflow_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('partner_id')->nullable()->constrained()->cascadeOnDelete();
-            $table->foreignId('branch_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('office_id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->date('started_at')->nullable();
             $table->date('ended_at')->nullable();

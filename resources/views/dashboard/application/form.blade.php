@@ -29,16 +29,16 @@
     </div>
 </div>
 
-<div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }} mb-3">
-    {{ Form::label('branch_id', 'Branch', ['class' => 'col-sm-6 control-label']) }}
+<div class="form-group{{ $errors->has('office_id') ? ' has-error' : '' }} mb-3">
+    {{ Form::label('office_id', 'Office', ['class' => 'col-sm-6 control-label']) }}
     <div class="row">
         <div class="col-sm-9">
-            {{ Form::select('branch_id', $branches, null, ['class' => 'form-control select2','style'=>'width: 100%',  'id'=>'branch_id', 'required' => 'required']) }}
-            <small class="text-danger">{{ $errors->first('branch_id') }}</small>
+            {{ Form::select('office_id', $offices, null, ['class' => 'form-control select2','style'=>'width: 100%',  'id'=>'office_id', 'required' => 'required']) }}
+            <small class="text-danger">{{ $errors->first('office_id') }}</small>
 
         </div>
         <div class="col-sm-3">
-            <a href="{{route('branch.index')}}" class="btn btn-primary"><i class="mdi mdi-plus"></i></a>
+            <a href="{{route('office.index')}}" class="btn btn-primary"><i class="mdi mdi-plus"></i></a>
         </div>
 
     </div>

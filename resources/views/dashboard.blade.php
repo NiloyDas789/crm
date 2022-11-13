@@ -242,354 +242,29 @@
         <!-- end row -->
 
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Application</h4>
-
-                        <div class="pe-3" data-simplebar style="max-height: 287px;">
-                            @forelse(applications() as $key => $application)
-                                <a href="#" class="text-body d-block">
-                                    <div class="d-flex py-3" style="background: #f1f1f1;padding: 13px;">
-                                        <div class="flex-shrink-0 me-3 align-self-center">
-                                            # {{ $key+1 }}
-                                        </div>
-
-                                        <div class="flex-grow-1 overflow-hidden">
-                                            <h5 class="text-truncate mb-0">
-                                                {{$application->note_title ?? ''}}
-                                            </h5>
-                                            <p>
-                                                 {{ \Str::limit($application->note_description, 15) }}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                            @empty
-                                <a href="#" class="text-body d-block">
-                                    <div class="d-flex py-3">
-                                       <div class="text-center">
-                                           No Applications
-                                       </div>
-                                    </div>
-                                </a>
-                            @endforelse
-                        </div>
-                    </div>
-                    <!-- end card-body -->
-                </div>
-                <!-- end card -->
-            </div>
-            <!-- end col -->
-
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Notifications</h4>
-
-                        <div class="pe-3" data-simplebar style="max-height: 287px;">
-                            <a href="#" class="text-body d-block">
-                                <div class="d-flex py-3">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <img class="rounded-circle avatar-xs" alt="" src="{{asset('/')}}assets/images/users/avatar-2.jpg">
-                                    </div>
-
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-14 mb-1">Scott Elliott</h5>
-                                        <p class="text-truncate mb-0">
-                                            If several languages coalesce
-                                        </p>
-                                    </div>
-                                    <div class="flex-shrink-0 font-size-13">
-                                        20 min ago
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="text-body d-block">
-                                <div class="d-flex py-3">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-xs">
-                                        <span class="avatar-title bg-soft-primary rounded-circle text-primary">
-                                            <i class="mdi mdi-account-supervisor"></i>
-                                        </span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-14 mb-1">Team A</h5>
-                                        <p class="text-truncate mb-0">
-                                            Team A Meeting 9:15 AM
-                                        </p>
-                                    </div>
-                                    <div class="flex-shrink-0 font-size-13">
-                                        9:00 am
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="text-body d-block">
-                                <div class="d-flex py-3">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <img class="rounded-circle avatar-xs" alt="" src="{{asset('/')}}assets/images/users/avatar-3.jpg">
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-14 mb-1">Frank Martin</h5>
-                                        <p class="text-truncate mb-0">
-                                            Neque porro quisquam est
-                                        </p>
-                                    </div>
-                                    <div class="flex-shrink-0 font-size-13">
-                                        8:54 am
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="#" class="text-body d-block">
-                                <div class="d-flex py-3">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <div class="avatar-xs">
-                                        <span class="avatar-title bg-soft-primary rounded-circle text-primary">
-                                            <i class="mdi mdi-email-outline"></i>
-                                        </span>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-14 mb-1">Updates</h5>
-                                        <p class="text-truncate mb-0">
-                                            It will be as simple as fact
-                                        </p>
-                                    </div>
-                                    <div class="flex-shrink-0 font-size-13">
-                                        27-03-2020
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="#" class="text-body d-block">
-                                <div class="d-flex py-3">
-                                    <div class="flex-shrink-0 me-3 align-self-center">
-                                        <img class="rounded-circle avatar-xs" alt=""
-                                             src="{{asset('/')}}assets/images/users/avatar-4.jpg">
-                                    </div>
-                                    <div class="flex-grow-1 overflow-hidden">
-                                        <h5 class="font-size-14 mb-1">Terry Garrick</h5>
-                                        <p class="text-truncate mb-0">
-                                            At vero eos et accusamus et
-                                        </p>
-                                    </div>
-                                    <div class="flex-shrink-0 font-size-13">
-                                        27-03-2020
-                                    </div>
-                                </div>
-                            </a>
-
-                        </div>
-                    </div>
-                    <!-- end card-body -->
-                </div>
-                <!-- end card -->
-            </div>
-            <!-- end col -->
-
-            <div class="col-lg-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3">Revenue by Location</h5>
-
-                        <div>
-                            <div id="usa" style="height: 226px"></div>
-                        </div>
-
-                        <div class="text-center mt-4">
-                            <a href="#" class="btn btn-primary btn-sm">View More</a>
-                        </div>
-                    </div>
-                    <!-- end card-body -->
-                </div>
-                <!-- end card -->
-            </div>
-            <!-- end col -->
-        </div>
-        <!-- end row -->
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4">Latest Transaction</h4>
-
                         <div class="table-responsive">
-                            <table class="table table-centered table-nowrap mb-0">
-                                <thead>
+                            <table class="table table-sm table-striped table-hover">
                                 <tr>
-                                    <th scope="col"  style="width: 50px;">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheckall">
-                                            <label class="form-check-label" for="customCheckall"></label>
-                                        </div>
-                                    </th>
-                                    <th scope="col"  style="width: 60px;"></th>
-                                    <th scope="col">ID & Name</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
+                                    <th>Product</th>
+                                    <th>Partner</th>
+                                    <th>Workflows</th>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck1">
-                                            <label class="form-check-label" for="customCheck1"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="{{asset('/')}}assets/images/users/avatar-2.jpg" alt="user" class="avatar-xs rounded-circle" />
-                                    </td>
-                                    <td>
-                                        <p class="mb-1 font-size-12">#AP1234</p>
-                                        <h5 class="font-size-15 mb-0">David Wiley</h5>
-                                    </td>
-                                    <td>02 Nov, 2019</td>
-                                    <td>$ 1,234</td>
-                                    <td>1</td>
-
-                                    <td>
-                                        $ 1,234
-                                    </td>
-                                    <td>
-                                        <i class="mdi mdi-checkbox-blank-circle text-success me-1"></i> Confirm
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck2">
-                                            <label class="form-check-label" for="customCheck2"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="avatar-xs">
-                                            <span class="avatar-title rounded-circle bg-soft-primary text-success">
-                                                W
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="mb-1 font-size-12">#AP1235</p>
-                                        <h5 class="font-size-15 mb-0">Walter Jones</h5>
-                                    </td>
-                                    <td>04 Nov, 2019</td>
-                                    <td>$ 822</td>
-                                    <td>2</td>
-
-                                    <td>
-                                        $ 1,644
-                                    </td>
-                                    <td>
-                                        <i class="mdi mdi-checkbox-blank-circle text-success me-1"></i> Confirm
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck3">
-                                            <label class="form-check-label" for="customCheck3"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="{{asset('/')}}assets/images/users/avatar-3.jpg" alt="user" class="avatar-xs rounded-circle" />
-                                    </td>
-                                    <td>
-                                        <p class="mb-1 font-size-12">#AP1236</p>
-                                        <h5 class="font-size-15 mb-0">Eric Ryder</h5>
-                                    </td>
-                                    <td>05 Nov, 2019</td>
-                                    <td>$ 1,153</td>
-                                    <td>1</td>
-
-                                    <td>
-                                        $ 1,153
-                                    </td>
-                                    <td>
-                                        <i class="mdi mdi-checkbox-blank-circle text-danger me-1"></i> Cancel
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck4">
-                                            <label class="form-check-label" for="customCheck4"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <img src="{{asset('/')}}assets/images/users/avatar-6.jpg" alt="user" class="avatar-xs rounded-circle" />
-                                    </td>
-                                    <td>
-                                        <p class="mb-1 font-size-12">#AP1237</p>
-                                        <h5 class="font-size-15 mb-0">Kenneth Jackson</h5>
-                                    </td>
-                                    <td>06 Nov, 2019</td>
-                                    <td>$ 1,365</td>
-                                    <td>1</td>
-
-                                    <td>
-                                        $ 1,365
-                                    </td>
-                                    <td>
-                                        <i class="mdi mdi-checkbox-blank-circle text-success me-1"></i> Confirm
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="customCheck5">
-                                            <label class="form-check-label" for="customCheck5"></label>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div class="avatar-xs">
-                                            <span class="avatar-title rounded-circle bg-soft-primary text-success">
-                                                R
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <p class="mb-1 font-size-12">#AP1238</p>
-                                        <h5 class="font-size-15 mb-0">Ronnie Spiller</h5>
-                                    </td>
-                                    <td>08 Nov, 2019</td>
-                                    <td>$ 740</td>
-                                    <td>2</td>
-
-                                    <td>
-                                        $ 1,480
-                                    </td>
-                                    <td>
-                                        <i class="mdi mdi-checkbox-blank-circle text-warning me-1"></i> Pending
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn btn-outline-success btn-sm">Edit</button>
-                                        <button type="button" class="btn btn-outline-danger btn-sm">Cancel</button>
-                                    </td>
-                                </tr>
-                                </tbody>
+                                @forelse(applications() as $key => $application)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('application.edit', $application->id) }}">
+                                                {{ $application->product->name ?? ''}}
+                                            </a>
+                                        </td>
+                                        <td>{{ $application->partner->name ?? ''}}</td>
+                                        <td>{{ $application->workflow->name ?? '' }}</td>
+                                    </tr>
+                                @empty
+                                @endforelse
                             </table>
                         </div>
                     </div>
@@ -598,8 +273,47 @@
                 <!-- end card -->
             </div>
             <!-- end col -->
+
+
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{{ route('task.note.store') }}" method="post">
+                            @csrf
+                            <div class="d-flex justify-content-between">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="note" placeholder="Enter Note . . . . . ">
+                                </div>
+                                <button class="btn btn-dark btn-sm">Note</button>
+
+                            </div>
+                        </form>
+                        <div class="note_content">
+                            <ul>
+                                @forelse(taskNote() as $note)
+                                    <li>
+                                        <div class="d-flex justify-content-between">
+                                            <div>{{$note->note}}</div>
+                                        <span><a href="{{ route('task.note.delete', $note->id) }}" class="btn btn-sm btn-danger">
+                                                <i class="fas fa-trash"></i>
+                                            </a></span>
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li class="text-center">
+                                        No Task Note
+                                    </li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
+            <!-- end col -->
         </div>
-        <!-- end row -->
+
 
     </div>
 @endsection
@@ -615,4 +329,30 @@
 @push('style')
     <!-- jvectormap -->
     <link href="{{ asset('/') }}assets/libs/jqvmap/jqvmap.min.css" rel="stylesheet" />
+
+    <style>
+        .note_content {
+            padding: 10px;
+            height: 67vh;
+            background: #f5f5f5;
+            /* margin: 0px; */
+        }
+
+        .note_content ul li {
+            border-bottom: 1px solid #bdbdbd;
+            list-style: none;
+            font-size: 18px;
+            transition: .5s;
+            cursor: pointer;
+            padding: 13px;
+        }
+        .note_content ul li:hover {
+    background: #e3d8d8;
+}
+
+        .note_content ul {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 @endpush

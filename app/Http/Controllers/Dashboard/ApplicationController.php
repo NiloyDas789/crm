@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use App\Models\Dashboard\Note;
 use App\Models\Dashboard\Task;
@@ -27,7 +28,7 @@ class ApplicationController extends Controller
     {
         $dd = Document::find($document);
         $myFile = 'storage/'.$dd->url;
-    	return response()->download($myFile);
+        return response()->download($myFile);
     }
 
 
@@ -43,10 +44,10 @@ class ApplicationController extends Controller
         //        dd($client->first_name);
         $workflows    = Workflow::pluck('name', 'id');
         $partners     = Partner::pluck('name', 'id');
-        $branches     = Branch::pluck('name', 'id');
+        $offices     = Office::pluck('name', 'id');
         $products     = Product::pluck('name', 'id');
         //        $this->putSL($client->applications);
-        return view('dashboard.application.index', compact('client', 'workflows', 'partners', 'branches', 'products'));
+        return view('dashboard.application.index', compact('client', 'workflows', 'partners', 'offices', 'products'));
     }
     /**
      * Show the form for creating a new resource.
@@ -72,7 +73,7 @@ class ApplicationController extends Controller
             'client_id'             => ['integer', 'required'],
             'workflow_id'           => ['integer', 'nullable'],
             'partner_id'            => ['integer', 'nullable'],
-            'branch_id'             => ['integer', 'nullable'],
+            'office_id'             => ['integer', 'nullable'],
             'product_id'             => ['integer', 'required'],
             'started_at'            => ['date', 'nullable'],
             'ended_at'              => ['date', 'nullable'],
@@ -114,7 +115,7 @@ class ApplicationController extends Controller
     {
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications', 'applications.product', 'city.state.country')->first();
-        $tasks        = Task::get();
+        $tasks        = Task::query()->with('applications')->get();
         $documents = Document::get();
         $notes = Note::get();
         return view('dashboard.application.edit', compact('application', 'client', 'tasks', 'documents', 'notes'));
@@ -150,7 +151,7 @@ class ApplicationController extends Controller
             'client_id'             => ['integer', 'required'],
             'workflow_id'           => ['integer', 'nullable'],
             'partner_id'            => ['integer', 'nullable'],
-            'branch_id'             => ['integer', 'nullable'],
+            'office_id'             => ['integer', 'nullable'],
             'product_id'             => ['integer', 'required'],
             'started_at'            => ['date', 'nullable'],
             'ended_at'              => ['date', 'nullable'],
@@ -207,5 +208,24 @@ class ApplicationController extends Controller
             ->paginate(10);
 
         return view('application.applicationTable', compact('applications'));
+    }
+
+
+    public function checkApplicationTask($task, $application)
+    {
+        $exists = DB::table('application_task');
+        $exists->where('application_id', $application)
+            ->where('task_id', $task);
+
+        $check = $exists->exists();
+        if($check){
+            $exists->delete();
+            return 'done';
+        }else{
+            $exists->insert(
+                ['application_id' => $application, 'task_id' => $task]
+            );
+            return 'done';
+        }
     }
 }

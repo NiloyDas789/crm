@@ -22,7 +22,7 @@
                 <td>{{ $application->product->name ?? ''}}</td>
 
                 <td nowrap="nowrap">
-                    <a class="btn btn-primary btn-md waves-effect waves-light" href="{{ route('application.edit', $application->id) }}"><i class="fas fa-edit"></i></a>
+{{--                    <a class="btn btn-primary btn-md waves-effect waves-light" href="{{ route('application.edit', $application->id) }}"><i class="fas fa-edit"></i></a>--}}
                     {{-- Edit Modal --}}
                     {{--                    <button type="button" class="btn btn-primary btn-md waves-effect waves-light"--}}
                     {{--                            data-bs-toggle="modal" data-bs-target="#edit{{$application->id}}"><i--}}

@@ -22,4 +22,9 @@ class Task extends Model
     public function user(){
         return $this->belongsTo(User::class,'id','assignee_id');
     }
+
+    public function applications()
+    {
+        return $this->belongsToMany(Application::class);
+    }
 }

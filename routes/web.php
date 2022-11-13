@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
@@ -55,6 +56,19 @@ Route::group(['middleware' => ['auth']], function() {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::post('/task-note-store', function (\Illuminate\Http\Request $request) {
+        $note = \App\Models\Dashboard\TaskNote::create([
+            'note' => $request->note,
+            'user_id' => auth()->id(),
+        ]);
+        return back();
+    })->name('task.note.store');
+    Route::get('/task-note-store/{id}', function ($id) {
+        $note = \App\Models\Dashboard\TaskNote::find($id);
+        $note->delete();
+        return back();
+    })->name('task.note.delete');
+
     Route::post('status-search',[ StatusController::class ,'search'])->name('status.search');
     Route::resource('status',StatusController::class)->except('create','edit','show');
 
@@ -65,25 +79,27 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('appointment',AppointmentController::class)->except('create','edit','show');
 
     Route::post('contact-search',[ ContactController::class ,'search'])->name('contact.search');
-Route::resource('contact',ContactController::class)->except('create','edit','show');
+    Route::resource('contact',ContactController::class)->except('create','edit','show');
 
     Route::post('workflow-search',[ WorkflowController::class ,'search'])->name('workflow.search');
     Route::resource('workflow',WorkflowController::class)->except('create','edit','show');
 
     Route::get('download/{document}',[ApplicationController::class, 'downloadD']);
 
+    Route::get('application-taskcheck/{task}/{application}', [ApplicationController::class, 'checkApplicationTask'])->name('application.task.store');
     Route::post('application-search',[ ApplicationController::class ,'search'])->name('application.search');
     Route::get('application/{id}',[ApplicationController::class,'index'])->name('application.index');
     Route::resource('application',ApplicationController::class)->except('index','create');
 
 
+
     // Route::get('download/{file_name}',function($file_name){
     //     return $file_name;
     //         $file = Storage::disk('public')->get($file_name);
-      
+
     //         return (new Response($file, 200))
     //               ->header('Content-Type', 'image/jpeg');
-    // }); 
+    // });
 
 
     Route::post('revenue-type-search',[ RevenueTypeController::class ,'search'])->name('revenueType.search');
@@ -133,7 +149,7 @@ Route::resource('contact',ContactController::class)->except('create','edit','sho
 
     Route::post('client-search',[ ClientController::class ,'search'])->name('client.search');
     Route::resource('client',ClientController::class);
-                // ->except('create','edit','show','store');
+    // ->except('create','edit','show','store');
 
     Route::post('task-search',[ TaskController::class ,'search'])->name('task.search');
     Route::resource('task',TaskController::class)->except('create','edit','show');
@@ -160,10 +176,10 @@ Route::get('migrate',function(){
     dd('done');
 });
 
- Route::get('migrate-fresh',function(){
-     Artisan::call('migrate:fresh --seed');
-     dd('done');
- });
+Route::get('migrate-fresh',function(){
+    Artisan::call('migrate:fresh --seed');
+    dd('done');
+});
 
 Route::get('optimize',function(){
     Artisan::call('optimize');

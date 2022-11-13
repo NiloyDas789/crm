@@ -14,7 +14,7 @@ class Application extends Model
       'client_id',
       'workflow_id',
       'partner_id',
-      'branch_id',
+      'office_id',
       'product_id',
       'started_at',
       'ended_at',
@@ -33,9 +33,10 @@ class Application extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function branch(){
-        return $this->belongsTo(Branch::class);
-    } public function partner(){
+    public function office(){
+        return $this->belongsTo(Office::class);
+    }
+    public function partner(){
         return $this->belongsTo(Partner::class);
     }
 
@@ -45,5 +46,11 @@ class Application extends Model
 
     public function assignee(){
         return $this->belongsTo(User::class,'assignee_id');
+    }
+
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
     }
 }

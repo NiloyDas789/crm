@@ -60,7 +60,7 @@
 
                                 </div>
                                 <div>
-                                    {{$application->branch->name}}
+                                    {{$application->office->name ?? ''}}
 
                                 </div>
                             </div>
@@ -136,13 +136,14 @@
                         <div class="tab-pane active" id="custom-activities" role="tabpanel">
                             <ul class="list-group">
                                 @foreach($tasks as $task)
-                                    <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
+                                    <li class="list-group-item  d-flex justify-content-between   @if(count($task->applications) > 0) list-group-item-primary @endif" aria-current="true">
                                         <div class=" d-flex  gap-2">
                                             <div class="bg-white rounded">
-                                                <input class="form-check-input m-1 " type="checkbox" value="" id="flexCheckCheckedDisabled" checked  disabled>
+                                                <input class="form-check-input m-1 checkTaskApplication" type="checkbox" value="{{ $task->id }}" id="flexCheckCheckedDisabled" @if(count($task->applications) > 0) checked @endif>
                                             </div>
                                             <div>
                                                 {{$task->title}}
+
                                             </div>
                                         </div>
                                         @include('dashboard.application.taskButtons')
@@ -169,7 +170,7 @@
                                             {{ $document->tasks->title ?? '' }}
                                         </td>
                                         <td>
-                                                <img src="{{asset('storage/' . $document->url) }}" class="rounded " width="50px" alt="">
+                                            <img src="{{asset('storage/' . $document->url) }}" class="rounded " width="50px" alt="">
                                         </td>
                                         <td>
                                             <a href="{{ url('/download') }}/{{$document->id}}" class="btn btn-dark btn-sm">Download</a>
@@ -243,27 +244,27 @@
                             </div>
                         </div>
                         <div class="col-12 mr-4 mt-4 font-bold font-weight-bold">
-                                <div class="row">
-                                    <div class="col-12 border"><b>Start</b></div>
-                                    <div class="col-12 border">
-                                        <div>
-                                            {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
-                                            'required']) !!}
-                                        </div>
+                            <div class="row">
+                                <div class="col-12 border"><b>Start</b></div>
+                                <div class="col-12 border">
+                                    <div>
+                                        {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
+                                        'required']) !!}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mr-4 mt-4 font-bold font-weight-bold">
-                                <div class="row">
-                                    <div class="col-12 border"><b>End</b></div>
-                                    <div class="col-12 border">
-                                        <div>
+                        </div>
+                        <div class="col-12 mr-4 mt-4 font-bold font-weight-bold">
+                            <div class="row">
+                                <div class="col-12 border"><b>End</b></div>
+                                <div class="col-12 border">
+                                    <div>
                                         {!! Form::date('date', null, ['class' => 'form-control', 'required' =>
                                             'required']) !!}
-                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         <hr />
                         <div class="col-12 d-flex justify-content-center my-4">
                             @include('dashboard.application.paymentSchedule')
