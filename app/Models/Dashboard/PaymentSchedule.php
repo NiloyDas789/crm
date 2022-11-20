@@ -15,5 +15,6 @@ class PaymentSchedule extends Model
       'installment_date',
       'discount',
       'invoice_date',
+      'amount',
     ];
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('installment_name')->nullable();
             $table->date('installment_date')->nullable();
             $table->integer('discount')->nullable();
+            $table->integer('amount')->nullable();
             $table->date('invoice_date')->nullable();
             $table->timestamps();
         });

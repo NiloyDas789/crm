@@ -139,7 +139,7 @@
                                     <li class="list-group-item  d-flex justify-content-between   @if(count($task->applications) > 0) list-group-item-primary @endif" aria-current="true">
                                         <div class=" d-flex  gap-2">
                                             <div class="bg-white rounded">
-                                                <input class="form-check-input m-1 checkTaskApplication" type="checkbox" value="{{ $task->id }}" id="flexCheckCheckedDisabled" @if(count($task->applications) > 0) checked @endif>
+                                                <input  class="form-check-input m-1 checkTaskApplication" type="checkbox" value="{{ $task->id }}" id="flexCheckCheckedDisabled" @if(count($task->applications) > 0) checked @endif>
                                             </div>
                                             <div>
                                                 {{$task->title}}
@@ -223,13 +223,26 @@
                         </div>
                         <div class="tab-pane" id="custom-schedules" role="tabpanel">
                             <p class="mb-0">
-                                Trust fund seitan letterpress, keytar raw denim keffiyeh etsy
-                                art party before they sold out master cleanse gluten-free squid
-                                scenester freegan cosby sweater. Fanny pack portland seitan DIY,
-                                art party locavore wolf cliche high life echo park Austin. Cred
-                                vinyl keffiyeh DIY salvia PBR, banh mi before they sold out
-                                farm-to-table VHS viral locavore cosby sweater. Lomo wolf viral,
-                                mustache.
+                            <table class="table table-sm table-hover text-center">
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Installment Name</th>
+                                    <th>Installment Amount</th>
+                                </tr>
+                                @forelse($paymentSchedules as $ps)
+                                    <tr>
+                                        <td>{{$ps->installment_date ?? ''}}</td>
+                                        <td>{{$ps->installment_name ?? ''}}</td>
+                                        <td>{{$ps->amount ?? ''}}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3">
+                                            No Data :)
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </table>
                             </p>
                         </div>
                     </div>
@@ -273,11 +286,11 @@
                         <div class="d-grid gap-3 mt-3">
                             <div class="d-flex justify-content-between fw-bold">
                                 <div> Product Fees </div>
-                                <div> 0.00</div>
+                                <div>{{ $application->product->price ?? 00.00 }}</div>
                             </div>
                             <div class="d-flex justify-content-between my-8">
                                 <div> Total Fee</div>
-                                <div> 0.00</div>
+                                <div>{{ $application->product->price ?? 00.00 }}</div>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="text-primary"> Discount</div>
@@ -285,7 +298,7 @@
                             </div>
                             <div class="d-flex justify-content-between">
                                 <div class="text-danger"> Net Fee:</div>
-                                <div> 0.00</div>
+                                <div>{{ $application->product->price ?? 00.00 }}</div>
                             </div>
                         </div>
                         <hr />

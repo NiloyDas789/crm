@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Mail\ProductPaymentMail;
+use App\Models\Dashboard\PaymentSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 use App\Models\Dashboard\Note;
 use App\Models\Dashboard\Task;
@@ -116,9 +119,10 @@ class ApplicationController extends Controller
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications', 'applications.product', 'city.state.country')->first();
         $tasks        = Task::query()->with('applications')->get();
+        $paymentSchedules        = PaymentSchedule::query()->where('application_id', $application->id)->get();
         $documents = Document::get();
         $notes = Note::get();
-        return view('dashboard.application.edit', compact('application', 'client', 'tasks', 'documents', 'notes'));
+        return view('dashboard.application.edit', compact('application', 'client', 'tasks', 'documents', 'notes','paymentSchedules'));
     }
 
     /**
@@ -213,6 +217,8 @@ class ApplicationController extends Controller
 
     public function checkApplicationTask($task, $application)
     {
+        $taskData = Task::find($task);
+
         $exists = DB::table('application_task');
         $exists->where('application_id', $application)
             ->where('task_id', $task);
@@ -222,10 +228,54 @@ class ApplicationController extends Controller
             $exists->delete();
             return 'done';
         }else{
+
+            $data = [
+                'name' => 'Iftekhar',
+                'subject' => 'Payment For Product',
+                'body' => 'the bosy message',
+                'amount' => 2000,
+            ];
+
+            if ($taskData->title == 'Offer Letter'){
+                Mail::to('s@d.c')->send(new ProductPaymentMail($data));
+            }
+
+
             $exists->insert(
                 ['application_id' => $application, 'task_id' => $task]
             );
             return 'done';
         }
     }
+
+    public function paymentScheduleStore(Request $request)
+    {
+
+        $application = Application::find($request->application_id);
+
+        PaymentSchedule::create([
+            'client_id' => $application->client_id,
+            'application_id' => $application->id,
+            'installment_name' => $request->installment_name,
+            'installment_date' => $request->installment_date,
+            'amount' => $request->amount,
+        ]);
+
+        $data = [
+            'name' => 'Iftekhar',
+            'subject' => 'Payment For Product',
+            'body' => 'the bosy message',
+            'amount' => 2000,
+        ];
+
+        Mail::to($application->client->email)->send(new ProductPaymentMail($data));
+
+
+        return back()->with('status', 'Your Payment Schedule Set Done');
+
+
+
+    }
+
+
 }

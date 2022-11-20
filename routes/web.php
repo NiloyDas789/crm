@@ -87,6 +87,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('download/{document}',[ApplicationController::class, 'downloadD']);
 
     Route::get('application-taskcheck/{task}/{application}', [ApplicationController::class, 'checkApplicationTask'])->name('application.task.store');
+    Route::post('application-payment-schedule-store', [ApplicationController::class, 'paymentScheduleStore'])->name('application.payment.schedule.store');
     Route::post('application-search',[ ApplicationController::class ,'search'])->name('application.search');
     Route::get('application/{id}',[ApplicationController::class,'index'])->name('application.index');
     Route::resource('application',ApplicationController::class)->except('index','create');

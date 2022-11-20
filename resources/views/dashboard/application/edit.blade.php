@@ -8,6 +8,11 @@
         <!-- start page title -->
         <div class="row">
             <div class="col-12">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                     <h4 class="mb-sm-0">Application</h4>
                     <div class="page-title-right">
@@ -67,9 +72,10 @@
     <script>
         $('.checkTaskApplication').on('change', function(){
             let id = $(this).val();
+            console.log(id)
             let applicationID = "{{$application->id}}";
             $.get("/application-taskcheck/"+id+"/"+applicationID, function (data) {
-               location.reload();
+                location.reload();
 
             });
         });
