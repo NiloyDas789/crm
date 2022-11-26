@@ -136,13 +136,17 @@
                         <div class="tab-pane active" id="custom-activities" role="tabpanel">
                             <ul class="list-group">
                                 @foreach($tasks as $task)
-                                    <li class="list-group-item  d-flex justify-content-between   @if(count($task->applications) > 0) list-group-item-primary @endif" aria-current="true">
+                                    @php
+                                        $dd = $application->tasks->pluck('id')->toArray();
+                                    @endphp
+                                    <li class="list-group-item  d-flex justify-content-between   @if(in_array($task->id, $dd)) list-group-item-primary @endif" aria-current="true">
                                         <div class=" d-flex  gap-2">
                                             <div class="bg-white rounded">
-                                                <input  class="form-check-input m-1 checkTaskApplication" type="checkbox" value="{{ $task->id }}" id="flexCheckCheckedDisabled" @if(count($task->applications) > 0) checked @endif>
+                                                <input @if(in_array($task->id, $dd)) checked @endif  class="form-check-input m-1 checkTaskApplication" type="checkbox" value="{{ $task->id }}" id="flexCheckCheckedDisabled" >
                                             </div>
                                             <div>
-                                                {{$task->title}}
+                                                {{ $task->title }}
+
 
                                             </div>
                                         </div>

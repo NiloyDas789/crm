@@ -25,6 +25,6 @@ class Task extends Model
 
     public function applications()
     {
-        return $this->belongsToMany(Application::class);
+        return $this->belongsToMany(Application::class,'applications_tasks','task_id','application_id');
     }
 }

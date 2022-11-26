@@ -94,6 +94,11 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
+    //Report
+
+    Route::get('application-report', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'index'])->name('application.report.index');
+    Route::get('application-report-search', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'search'])->name('application.report.search');
+
     // Route::get('download/{file_name}',function($file_name){
     //     return $file_name;
     //         $file = Storage::disk('public')->get($file_name);

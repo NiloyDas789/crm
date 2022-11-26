@@ -118,7 +118,7 @@ class ApplicationController extends Controller
     {
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications', 'applications.product', 'city.state.country')->first();
-        $tasks        = Task::query()->with('applications')->get();
+        $tasks          = Task::query()->get();
         $paymentSchedules        = PaymentSchedule::query()->where('application_id', $application->id)->get();
         $documents = Document::get();
         $notes = Note::get();
@@ -176,7 +176,7 @@ class ApplicationController extends Controller
         }
 
 
-        return redirect() - back()->with('success', 'Application updated successfully.');
+        return redirect()->back()->with('success', 'Application updated successfully.');
     }
 
     /**
@@ -215,34 +215,36 @@ class ApplicationController extends Controller
     }
 
 
-    public function checkApplicationTask($task, $application)
+    public function checkApplicationTask($task,  $appID)
     {
         $taskData = Task::find($task);
-
-        $exists = DB::table('application_task');
-        $exists->where('application_id', $application)
+        $application = Application::find($appID);
+        $exists = DB::table('applications_tasks');
+        $exists->where('application_id', $application->id)
             ->where('task_id', $task);
 
+
         $check = $exists->exists();
+
         if($check){
             $exists->delete();
             return 'done';
         }else{
 
             $data = [
-                'name' => 'Iftekhar',
+                'name' => $application->client->first_name.' '.$application->client->last_name,
                 'subject' => 'Payment For Product',
-                'body' => 'the bosy message',
-                'amount' => 2000,
+                'body' => 'This is a reminder that your payment for product and your product price would be'.$application->product->price ,
+                'amount' => $application->product->price,
             ];
 
             if ($taskData->title == 'Offer Letter'){
-                Mail::to('s@d.c')->send(new ProductPaymentMail($data));
+                Mail::to($application->client->email)->send(new ProductPaymentMail($data));
             }
 
 
             $exists->insert(
-                ['application_id' => $application, 'task_id' => $task]
+                ['application_id' => $application->id, 'task_id' => $task]
             );
             return 'done';
         }
@@ -262,10 +264,10 @@ class ApplicationController extends Controller
         ]);
 
         $data = [
-            'name' => 'Iftekhar',
+            'name' => $application->client->first_name.' '.$application->client->last_name,
             'subject' => 'Payment For Product',
-            'body' => 'the bosy message',
-            'amount' => 2000,
+            'body' => 'This is a reminder for Installment. The date of installment is '.$request->installment_date. 'and the amount of installment'.$request->amount,
+            'amount' => $application->product->price,
         ];
 
         Mail::to($application->client->email)->send(new ProductPaymentMail($data));

@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('application_task', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('application_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('task_id')->constrained()->cascadeOnDelete();
+        Schema::create('applications_tasks', function (Blueprint $table) {
+            $table->foreignId('application_id')->constrained();
+            $table->foreignId('task_id')->constrained();
             $table->timestamps();
         });
     }

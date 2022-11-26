@@ -1,14 +1,19 @@
 <x-mail::message>
-# Dear {{ $details['name'] }},
+    # Dear ,
 
 
-    {{ $details['body']}}
-    {{ $details['amount'] }}
 
-<x-mail::button :url="''">
-   Click HEre to Payment
-</x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+    Hi {{ $details['name'] }},
+
+    {{ $details['body']}}.
+    Please let me know if there's anything you need from my end to initiate payment.
+
+    Hopefully you payment on time.
+
+    Please organize the payment for this invoice.
+
+
+    Thanks,</br>
+    {{ config('app.name') }}
 </x-mail::message>

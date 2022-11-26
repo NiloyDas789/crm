@@ -113,6 +113,46 @@
                         @endcan
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-currency-usd-circle"></i>
+                        <span>Reports</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        @can('product.access')
+                        <li>
+                            <a href="{{route('application.report.index')}}" class="waves-effect {{ request()->is('product') ? 'mm-active' : null }}">
+                                <i class="mdi mdi-apps"></i>
+                                <span>Application</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('category.access')
+                        <li>
+                            <a href="{{route('category.index')}}" class="waves-effect {{ request()->is('category') ? 'mm-active' : null }}">
+                                <i class="mdi mdi-account-reactivate"></i>
+                                <span>Office Check In</span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('productType.access')
+                        <li>
+                            <a href="{{route('productType.index')}}" class="waves-effect {{ request()->is('productType') ? 'mm-active' : null }}">
+                                <i class="mdi mdi-apps"></i>
+                                <span> Enquries </span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('revenueType.access')
+                        <li>
+                            <a href="{{route('revenueType.index')}}" class="waves-effect {{ request()->is('revenueType') ? 'mm-active' : null }}">
+                                <i class="mdi mdi-apps"></i>
+                                <span>Clients</span>
+                            </a>
+                        </li>
+                        @endcan
+                    </ul>
+                </li>
                 @can('partner.access')
                 <li>
                     <a href="{{route('partner.index')}}" class="waves-effect {{ request()->is('partner') ? 'mm-active' : null }}">
