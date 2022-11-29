@@ -129,7 +129,7 @@
                         @endcan
                         @can('category.access')
                         <li>
-                            <a href="{{route('category.index')}}" class="waves-effect {{ request()->is('category') ? 'mm-active' : null }}">
+                            <a href="{{ route('officeCheck.report.index') }}" class="waves-effect {{ request()->is('category') ? 'mm-active' : null }}">
                                 <i class="mdi mdi-account-reactivate"></i>
                                 <span>Office Check In</span>
                             </a>
@@ -137,7 +137,7 @@
                         @endcan
                         @can('productType.access')
                         <li>
-                            <a href="{{route('productType.index')}}" class="waves-effect {{ request()->is('productType') ? 'mm-active' : null }}">
+                            <a href="{{ route('enquiry.report.index') }}" class="waves-effect {{ request()->is('productType') ? 'mm-active' : null }}">
                                 <i class="mdi mdi-apps"></i>
                                 <span> Enquries </span>
                             </a>
