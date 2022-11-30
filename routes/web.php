@@ -97,13 +97,12 @@ Route::group(['middleware' => ['auth']], function() {
     //Report
 
     Route::get('application-report', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'index'])->name('application.report.index');
-    Route::get('application-report-search', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'search'])->name('application.report.search');
 
-    Route::get('enquiry-report', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'enquiryIndex'])->name('enquiry.report.index');
-    Route::get('enquiry-report-search', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'enquirySearch'])->name('enquiry.report.search');
+    Route::get('enquiry-report', [\App\Http\Controllers\Dashboard\Report\InquiryReportController::class,'index'])->name('enquiry.report.index');
 
-    Route::get('office-check-in-report', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'officeCheckIndex'])->name('officeCheck.report.index');
-    Route::get('office-check-report-search', [\App\Http\Controllers\Dashboard\Report\ApplicationReportController::class,'officeCheckSearch'])->name('officeCheck.report.search');
+    Route::get('office-check-in-report', [\App\Http\Controllers\Dashboard\Report\OfficeCheckReportController::class,'index'])->name('officeCheck.report.index');
+
+    Route::get('client-report', [\App\Http\Controllers\Dashboard\Report\ClientReportController::class, 'index'])->name('client.report.index');
 
 
     // Route::get('download/{file_name}',function($file_name){

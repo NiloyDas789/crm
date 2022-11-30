@@ -22,5 +22,10 @@
                                     <td>{{ $item->contact->name ?? ''}}</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="7">
+                                    {{ $items->links() }}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>

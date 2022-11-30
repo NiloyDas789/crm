@@ -23,11 +23,14 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12">
                 <div class="row mb-2">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-dark dropdown-toggle mr-2" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px">
                                 Filter Search
                             </button>
+                            <a href="{{ route('enquiry.report.index') }}" class="btn btn-primary">
+                                Reload
+                            </a>
                             <ul class="dropdown-menu" style="cursor: pointer">
                                 <li><a class="dropdown-item" data-id="name">Name</a></li>
                                 <li><a class="dropdown-item" data-id="email">Email</a></li>
@@ -36,24 +39,27 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-10">
-                        <form class="row row-cols-lg-auto g-3 align-items-center" id="showFilter" style="display: none">
+                    <div class="col-md-8">
+                        <form action="{{ route('enquiry.report.index') }}" method="get" class="row row-cols-lg-auto g-3 align-items-center" id="showFilter" style="display: none">
+                            <input type="hidden" class="filterType" name="filterData">
                             <div class="col-12">
                                 <label class="visually-hidden" for="query">Username</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="query" id="query" placeholder="Search Your Filter . . . .">
+                                    <input type="text" class="form-control" name="queryData" id="query" placeholder="Search Your Filter . . . .">
                                     <input type="hidden" class="form-control" name="queryType" id="queryType">
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="button" id="submitFilter" class="btn btn-primary">Submit</button>
+                                <button type="submit" id="submsitFilter" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
                                 <button type="button" id="closeFilter" class="btn btn-info">Close</button>
                             </div>
                         </form>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body" id="table-data">
                          @include('dashboard.report.table.enTableData')
 
                     </div>
@@ -86,25 +92,11 @@
         $(".dropdown-item").on('click', function () {
             // get filter type
             let filterData  = $(this).data("id");
-
+            console.log(filterData)
             $('#showFilter').show(); //show filter form
             $('#queryType').val('filterData'); // put filter type data into hidden input table
+            $('.filterType').val(filterData); // put filter type data into hidden input table
 
-            // submit filter
-            $('#submitFilter').on('click', function(){
-                let queryData = $('#query').val();
-                $.ajax({
-                    url:"{{route('enquiry.report.search')}}",
-                    method:"GET",
-                    data: {filterData, queryData},
-                    success: function (response) {
-                          $(".card-body").html(response);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            })
         })
         // close filter form
         $("#closeFilter").on('click', function () {

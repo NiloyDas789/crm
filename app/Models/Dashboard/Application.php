@@ -53,4 +53,14 @@ class Application extends Model
     {
         return $this->belongsToMany(Task::class, 'applications_tasks','application_id','task_id');
     }
+
+    public function scopeSearchFilter($query, $filterData, $queryData, $id, $relation)
+    {
+        return $query->when($filterData == $id, function ($query) use ($queryData, $relation) {
+                return $query->whereHas($relation, function ($q) use ($queryData) {
+                    return $q->where('name', 'like', '%' . $queryData . '%');
+                });
+            });
+    }
+
 }

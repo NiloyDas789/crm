@@ -28,4 +28,14 @@ class OfficeCheckin extends Model
         return $this->belongsTo(Contact::class);
     }
 
+    public function scopeSearchFilter($query, $filterData, $queryData, $id, $relation)
+    {
+        return $query->when($filterData == $id, function ($query) use ($queryData, $relation) {
+                return $query->whereHas($relation, function ($q) use ($queryData) {
+                    return $q->where('name', 'like', '%' . $queryData . '%');
+                });
+            });
+    }
+
+
 }

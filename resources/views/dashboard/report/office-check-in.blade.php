@@ -23,30 +23,37 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12">
                 <div class="row mb-2">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button type="button" class="btn btn-dark dropdown-toggle mr-2" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 5px">
                                 Filter Search
                             </button>
+                            <a href="{{ route('officeCheck.report.index') }}" class="btn btn-primary">
+                                Reload
+                            </a>
                             <ul class="dropdown-menu" style="cursor: pointer">
-                                <li><a class="dropdown-item" data-id="name">Name</a></li>
-                                <li><a class="dropdown-item" data-id="email">Email</a></li>
-                                <li><a class="dropdown-item" data-id="mobile">Mobile</a></li>
-                                <li><a class="dropdown-item" data-id="higher_level_education">Higher Level Education </a></li>
+                                <li><a class="dropdown-item" data-id="date">Date</a></li>
+                                <li><a class="dropdown-item" data-id="start">Start Time</a></li>
+                                <li><a class="dropdown-item" data-id="wait_time">Wait Time</a></li>
+                                <li><a class="dropdown-item" data-id="contact_id">Contact</a></li>
+                                <li><a class="dropdown-item" data-id="visit_purpose">Visit Purpose</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-10">
-                        <form class="row row-cols-lg-auto g-3 align-items-center" id="showFilter" style="display: none">
+                    <div class="col-md-8">
+                        <form action="{{ route('officeCheck.report.index') }}" method="get" class="row row-cols-lg-auto g-3 align-items-center" id="showFilter" style="display: none">
+                            @csrf
+                            <input type="hidden" class="filterType" name="filterData">
                             <div class="col-12">
-                                <label class="visually-hidden" for="query">Username</label>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="query" id="query" placeholder="Search Your Filter . . . .">
+                                    <input type="text" class="form-control" name="queryData" id="query" placeholder="Search Your Filter . . . .">
                                     <input type="hidden" class="form-control" name="queryType" id="queryType">
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="button" id="submitFilter" class="btn btn-primary">Submit</button>
+                                <button type="submit" id="submitFilter" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
                                 <button type="button" id="closeFilter" class="btn btn-info">Close</button>
                             </div>
                         </form>
@@ -54,7 +61,7 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                         @include('dashboard.report.table.officeCheckInTableData')
+                        @include('dashboard.report.table.officeCheckInTableData')
 
                     </div>
                 </div>
@@ -89,22 +96,7 @@
 
             $('#showFilter').show(); //show filter form
             $('#queryType').val('filterData'); // put filter type data into hidden input table
-
-            // submit filter
-            $('#submitFilter').on('click', function(){
-                let queryData = $('#query').val();
-                $.ajax({
-                    url:"{{route('enquiry.report.search')}}",
-                    method:"GET",
-                    data: {filterData, queryData},
-                    success: function (response) {
-                          $(".card-body").html(response);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            })
+            $('.filterType').val(filterData); // put filter type data into hidden input table
         })
         // close filter form
         $("#closeFilter").on('click', function () {

@@ -145,7 +145,7 @@
                         @endcan
                         @can('revenueType.access')
                         <li>
-                            <a href="{{route('revenueType.index')}}" class="waves-effect {{ request()->is('revenueType') ? 'mm-active' : null }}">
+                            <a href="{{route('client.report.index')}}" class="waves-effect {{ request()->is('revenueType') ? 'mm-active' : null }}">
                                 <i class="mdi mdi-apps"></i>
                                 <span>Clients</span>
                             </a>
@@ -228,26 +228,7 @@
                     </a>
                 </li>
                 @endcan
-                @can('status.access')
-                <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="mdi mdi-file-alert"></i>
-                        <span>Reports</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{route('status.index')}}">All Invoice</a></li>
-                        <li><a href="{{route('status.index')}}">Create Invoice</a></li>
-                    </ul>
-                </li>
-                @endcan
-                <!-- @can('status.access')
-                <li>
-                    <a href="{{route('status.index')}}" class="waves-effect {{ request()->is('status') ? 'mm-active' : null }}">
-                        <i class="mdi mdi-account-reactivate"></i>
-                        <span>Audit log</span>
-                    </a>
-                </li>
-                @endcan -->
+
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-file-alert"></i>

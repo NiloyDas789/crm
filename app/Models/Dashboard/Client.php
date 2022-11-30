@@ -43,4 +43,9 @@ class Client extends Model
         return $this->hasMany(Application::class);
     }
 
+    public function fullname()
+    {
+        return "$this->first_name $this->last_name";
+    }
+
 }

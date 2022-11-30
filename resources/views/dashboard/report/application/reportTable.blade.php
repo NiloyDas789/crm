@@ -22,5 +22,10 @@
                                     <td>{{ $ap->product->name ?? ''}}</td>
                                 </tr>
                             @endforeach
+                            <tr>
+                                <td colspan="6">
+                                    {{ $applications->links() }}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
