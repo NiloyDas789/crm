@@ -52,22 +52,10 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function() {
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\Dashboard\DashboardController::class, 'dashboard'])->name('dashboard');
 
-    Route::post('/task-note-store', function (\Illuminate\Http\Request $request) {
-        $note = \App\Models\Dashboard\TaskNote::create([
-            'note' => $request->note,
-            'user_id' => auth()->id(),
-        ]);
-        return back();
-    })->name('task.note.store');
-    Route::get('/task-note-store/{id}', function ($id) {
-        $note = \App\Models\Dashboard\TaskNote::find($id);
-        $note->delete();
-        return back();
-    })->name('task.note.delete');
+    Route::post('/task-note-store', [\App\Http\Controllers\Dashboard\DashboardController::class, 'noteStore'])->name('task.note.store');
+    Route::get('/task-note-store/{id}', [\App\Http\Controllers\Dashboard\DashboardController::class, 'noteDelete'])->name('task.note.delete');
 
     Route::post('status-search',[ StatusController::class ,'search'])->name('status.search');
     Route::resource('status',StatusController::class)->except('create','edit','show');

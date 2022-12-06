@@ -36,10 +36,11 @@
                                 <li><a class="dropdown-item" data-id="workflow_id">Workflows</a></li>
                                 <li><a class="dropdown-item" data-id="partner_id">Partner</a></li>
                                 <li><a class="dropdown-item" data-id="product_id">Product </a></li>
+                                <li><a class="dropdown-item" data-id="date_range">Date Range </a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 noDate">
                         <form action="{{ route('application.report.index') }}" method="get" class="row row-cols-lg-auto g-3 align-items-center" id="showFilter" style="display: none">
                             @csrf
                             <input type="hidden" class="filterType" name="filterData">
@@ -57,11 +58,36 @@
                                 <button type="button" id="closeFilter" class="btn btn-info">Close</button>
                             </div>
                         </form>
+                        <form action="{{ route('application.report.index') }}" method="get" class="row row-cols-lg-auto g-3 align-items-center" id="showFilterDate" style="display: none">
+                            @csrf
+                            <input type="hidden" class="filterType" name="filterData">
+                            <div class="col-12">
+                                <label class="visually-hidden" for="query">Username</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="queryDataFrom" id="query" placeholder="Search Your Filter . . . .">
+                                    <input type="hidden" class="form-control" name="queryType" id="queryType">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <label class="visually-hidden" for="query">Username</label>
+                                <div class="input-group">
+                                    <input type="date" class="form-control" name="queryDataTo" id="query" placeholder="Search Your Filter . . . .">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" id="submitFilter" class="btn btn-primary">
+                                    <i class="fas fa-search"></i> Search
+                                </button>
+                                <button type="button" id="closeFilter" class="btn btn-info">Close</button>
+                            </div>
+                        </form>
+
                     </div>
+
                 </div>
                 <div class="card">
                     <div class="card-body">
-                         @include('dashboard.report.application.reportTable')
+                        @include('dashboard.report.application.reportTable')
 
                     </div>
                 </div>
@@ -93,8 +119,16 @@
         $(".dropdown-item").on('click', function () {
             // get filter type
             let filterData  = $(this).data("id");
+            if(filterData == 'date_range'){
 
-            $('#showFilter').show(); //show filter form
+                $('#showFilterDate').show()
+                $('#showFilter').hide()
+            }else{
+                $('#showFilterDate').hide()
+                $('#showFilter').show()
+            }
+
+            //show filter form
             $('#queryType').val('filterData'); // put filter type data into hidden input table
             $('.filterType').val(filterData); // put filter type data into hidden input table
             // submit filter

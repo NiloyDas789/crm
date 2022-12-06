@@ -16,13 +16,22 @@ class ApplicationReportController extends Controller
 {
     public function index(Request $request)
     {
+//        "filterData": "date_range",
+//"queryDataFrom": "2022-12-15",
+//"queryType": null,
+//"queryDataTo": "2022-12-22"
+
         $filterData = $request->filterData;
         $queryData = $request->queryData;
+        $queryDataFrom = $request->queryDataFrom;
+        $queryDataTo = $request->queryDataTo;
         $applications = Application::query()->latest()
             ->when($filterData == 'client_id', function ($query) use ($queryData, $filterData) {
                 return $query->whereHas('client', function ($query) use ($queryData) {
                     return $query->where('first_name', 'like', '%' . $queryData . '%');
                 });
+            })->when($filterData == 'date_range', function ($query) use ($queryData, $queryDataFrom ,$queryDataTo) {
+                return $query->whereDate('created_at','>=', $queryDataFrom)->whereDate('created_at','<=', $queryDataTo);
             })
             ->searchFilter($filterData, $queryData, 'partner_id','partner')
             ->searchFilter($filterData, $queryData, 'workflow_id','workflow')
