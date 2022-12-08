@@ -42,6 +42,9 @@ class Client extends Model
     public function applications(){
         return $this->hasMany(Application::class);
     }
+    protected $casts = [
+        'visa_expiry_date' => 'date'
+    ];
 
     public function fullname()
     {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Mail\ProductPaymentMail;
+use App\Jobs\ProductPaymentMailJob;
 use App\Models\Dashboard\PaymentSchedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -236,10 +237,13 @@ class ApplicationController extends Controller
                 'subject' => 'Payment For Product',
                 'body' => 'This is a reminder that your payment for product and your product price would be'.$application->product->price ,
                 'amount' => $application->product->price,
+                'email' =>$application->client->email,
             ];
 
             if ($taskData->title == 'Offer Letter'){
-                Mail::to($application->client->email)->send(new ProductPaymentMail($data));
+                dispatch(new ProductPaymentMailJob($data));
+
+//                Mail::to($application->client->email)->send(new ProductPaymentMail($data));
             }
 
 
@@ -270,7 +274,9 @@ class ApplicationController extends Controller
             'amount' => $application->product->price,
         ];
 
-        Mail::to($application->client->email)->send(new ProductPaymentMail($data));
+            dispatch(new ProductPaymentMailJob($data));
+
+//        Mail::to($application->client->email)->send(new ProductPaymentMail($data));
 
 
         return back()->with('status', 'Your Payment Schedule Set Done');

@@ -273,7 +273,40 @@
                 <!-- end card -->
             </div>
             <!-- end col -->
-
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Application Expire Alert</h4>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-hover">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Visa Expiry</th>
+                                    <th>Application</th>
+                                    <th>Day Left</th>
+                                </tr>
+                                @forelse($c as $key => $item)
+                                    <tr>
+                                        <td>
+                                            <a href="{{ route('application.edit', $item->id) }}">
+                                                {{ $item->fullname() ?? ''}}
+                                            </a>
+                                        </td>
+                                        <td>{{ $item->visa_expiry_date ?? ''}}</td>
+                                        <td>{{ $item->application ?? '' }}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::now()->diffInDays($item->visa_expiry_date, false)}}
+                                        </td>
+                                    </tr>
+                                @empty
+                                @endforelse
+                            </table>
+                        </div>
+                    </div>
+                    <!-- end card-body -->
+                </div>
+                <!-- end card -->
+            </div>
 
             <div class="col-lg-4">
                 <div class="card">

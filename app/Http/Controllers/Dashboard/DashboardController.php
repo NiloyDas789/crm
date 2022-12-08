@@ -13,8 +13,8 @@ class DashboardController extends Controller
         $c = Client::query()
             ->where('visa_expiry_date', '<', now()->addDays(10))
             ->get();
-        return $c;
-        return view('dashboard');
+//        return $c;
+        return view('dashboard', compact('c'));
     }
     public function noteStore(Request $request)
     {
