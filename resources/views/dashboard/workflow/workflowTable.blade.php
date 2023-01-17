@@ -3,6 +3,7 @@
     <tr>
         <th>{{ __('ID')}}</th>
         <th>{{ __('Name') }}</th>
+        <th>{{ __('Tasks') }}</th>
         <th class="action">{{ __('Action') }}</th>
     </tr>
     </thead>
@@ -11,6 +12,15 @@
         <tr>
             <td>{{ $workflow->sl}}</td>
             <td>{{ $workflow->name }}</td>
+            {{-- {{dd($workflow->tasks)}} --}}
+            <td>
+                @isset($workflow->tasks)
+                @foreach ($workflow->tasks as $task)
+                <span class="badge bg-secondary">{{ $task->title }}</span>
+                @endforeach
+
+                @endisset
+            </td>
             <td nowrap="nowrap">
                 {{-- <a class="btn btn-info" href="{{ route('workflow.show', $workflow->id) }}"><i class="fas fa-eye"></i></a> --}}
                 {{-- Edit Modal --}}

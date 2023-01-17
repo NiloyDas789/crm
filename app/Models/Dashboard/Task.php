@@ -19,12 +19,18 @@ class Task extends Model
     ];
 
 
-    public function user(){
-        return $this->belongsTo(User::class,'id','assignee_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'assignee_id');
     }
 
     public function applications()
     {
-        return $this->belongsToMany(Application::class,'applications_tasks','task_id','application_id');
+        return $this->belongsToMany(Application::class, 'applications_tasks', 'task_id', 'application_id');
+    }
+
+    public function workflows()
+    {
+        return $this->belongsToMany(Workflow::class);
     }
 }

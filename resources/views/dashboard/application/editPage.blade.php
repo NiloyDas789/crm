@@ -135,7 +135,7 @@
                     <div class="tab-content p-3">
                         <div class="tab-pane active" id="custom-activities" role="tabpanel">
                             <ul class="list-group">
-                                @foreach($tasks as $task)
+                                @foreach($tasks->tasks as $task)
                                     @php
                                         $dd = $application->tasks->pluck('id')->toArray();
                                     @endphp
@@ -207,7 +207,7 @@
                         </div>
                         <div class="tab-pane" id="custom-tasks" role="tabpanel">
                             <ul class="list-group">
-                                @foreach($tasks as $task)
+                                @foreach($tasks->tasks as $task)
                                     <li class="list-group-item  d-flex justify-content-between list-group-item-primary" aria-current="true">
                                         <div class=" d-flex  gap-2">
                                             <div class="bg-white rounded">

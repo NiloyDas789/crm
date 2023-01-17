@@ -25,9 +25,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
-
-
-
     public function downloadD($document)
     {
         $dd = Document::find($document);
@@ -119,11 +116,13 @@ class ApplicationController extends Controller
     {
         $this->checkPermission('application.edit');
         $client         = Client::findOrFail($application->client->id)->with('applications', 'applications.product', 'city.state.country')->first();
-        $tasks          = Task::query()->get();
+        $tasks          = Workflow::findOrFail($application->workflow->id)->with('tasks')->first();
+        // dd($tasks);
+
         $paymentSchedules        = PaymentSchedule::query()->where('application_id', $application->id)->get();
         $documents = Document::get();
         $notes = Note::get();
-        return view('dashboard.application.edit', compact('application', 'client', 'tasks', 'documents', 'notes','paymentSchedules'));
+        return view('dashboard.application.edit', compact('application', 'client', 'tasks', 'documents', 'notes', 'paymentSchedules'));
     }
 
     /**
@@ -216,7 +215,7 @@ class ApplicationController extends Controller
     }
 
 
-    public function checkApplicationTask($task,  $appID)
+    public function checkApplicationTask($task, $appID)
     {
         $taskData = Task::find($task);
         $application = Application::find($appID);
@@ -227,11 +226,10 @@ class ApplicationController extends Controller
 
         $check = $exists->exists();
 
-        if($check){
+        if ($check) {
             $exists->delete();
             return 'done';
-        }else{
-
+        } else {
             $data = [
                 'name' => $application->client->first_name.' '.$application->client->last_name,
                 'subject' => 'Payment For Product',
@@ -240,7 +238,7 @@ class ApplicationController extends Controller
                 'email' =>$application->client->email,
             ];
 
-            if ($taskData->title == 'Offer Letter'){
+            if ($taskData->title == 'Offer Letter') {
                 dispatch(new ProductPaymentMailJob($data));
 
 //                Mail::to($application->client->email)->send(new ProductPaymentMail($data));
@@ -256,7 +254,6 @@ class ApplicationController extends Controller
 
     public function paymentScheduleStore(Request $request)
     {
-
         $application = Application::find($request->application_id);
 
         PaymentSchedule::create([
@@ -274,16 +271,11 @@ class ApplicationController extends Controller
             'amount' => $application->product->price,
         ];
 
-            dispatch(new ProductPaymentMailJob($data));
+        dispatch(new ProductPaymentMailJob($data));
 
 //        Mail::to($application->client->email)->send(new ProductPaymentMail($data));
 
 
         return back()->with('status', 'Your Payment Schedule Set Done');
-
-
-
     }
-
-
 }

@@ -117,6 +117,22 @@
             })
         })
     </script>
+        <script>
+            $('.select2').select2({
+                dropdownParent: $('#create'),
+                placeholder: 'Select an option',
+                width: 'resolve'
+            });
+
+            function editData(id){
+                let data = $('#edit'+id)
+                $('.select2').select2({
+                    dropdownParent: data,
+                    placeholder: 'Select an option'
+                });
+                console.log(aa)
+            }
+        </script>
 
 @endpush
 

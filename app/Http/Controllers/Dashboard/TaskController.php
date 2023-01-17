@@ -22,13 +22,13 @@ class TaskController extends Controller
     {
         $this->checkPermission('task.access');
         $tasks = Task::paginate(10);
-        $categories = Category::pluck('name','id');
-        $assignees = User::pluck('name','id');
-        $priorities = Priority::pluck('name','id');
-        $offices = Office::pluck('name','id');
-        $countries = Country::pluck('name','id');
+        $categories = Category::pluck('name', 'id');
+        $assignees = User::pluck('name', 'id');
+        $priorities = Priority::pluck('name', 'id');
+        $offices = Office::pluck('name', 'id');
+        $countries = Country::pluck('name', 'id');
         $this->putSL($tasks);
-        return view('dashboard.task.index', compact('tasks','categories','assignees','priorities','offices','countries'));
+        return view('dashboard.task.index', compact('tasks', 'categories', 'assignees', 'priorities', 'offices', 'countries'));
     }
     /**
      * Show the form for creating a new resource.
@@ -42,7 +42,7 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage.foreach
      *
      * @param Request $request
      * @return RedirectResponse
@@ -137,8 +137,7 @@ class TaskController extends Controller
     {
         if ($task->is_active==0) {
             $task->is_active ='1';
-        }
-        else{
+        } else {
             $task->is_active ='0';
         }
 

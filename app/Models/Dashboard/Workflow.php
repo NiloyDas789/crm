@@ -12,7 +12,12 @@ class Workflow extends Model
         'name',
         'is_accessible',
     ];
-    public function applications(){
+    public function applications()
+    {
         return $this->hasMany(Application::class);
+    }
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class);
     }
 }

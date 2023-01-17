@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dashboard\Task;
 use App\Models\Dashboard\Workflow;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -18,9 +19,12 @@ class WorkflowController extends Controller
     public function index()
     {
         $this->checkPermission('workflow.access');
+        // dd('adsfasd');
         $workflows = Workflow::paginate(10);
+        // dd($workflows);
+        $tasks = Task::pluck('title', 'id');
         $this->putSL($workflows);
-        return view('dashboard.workflow.index', compact('workflows'));
+        return view('dashboard.workflow.index', compact('workflows', 'tasks'));
     }
     /**
      * Show the form for creating a new resource.
@@ -44,9 +48,14 @@ class WorkflowController extends Controller
         $this->checkPermission('workflow.store');
         $validated = $request->validate([
             'name'        => ['required', 'string', 'max:255'],
+            'task_id'     => ['required', 'array'],
         ]);
+        // dd($validated['task_id']);
 
-        Workflow::create($validated);
+
+
+        $workflow = Workflow::create($validated);
+        $workflow->tasks()->attach($validated['task_id']);
 
         return redirect()->route('workflow.index')->with('success', 'Workflow Created Successfully.');
     }
@@ -86,7 +95,6 @@ class WorkflowController extends Controller
     public function update(Request $request, Workflow $workflow)
     {
         $this->checkPermission('workflow.update');
-        // dd($request->all());
         $validated = $request->validate([
             'name'        => ['required', 'string', 'max:255'],
         ]);
@@ -117,8 +125,7 @@ class WorkflowController extends Controller
     {
         if ($workflow->is_active==0) {
             $workflow->is_active ='1';
-        }
-        else{
+        } else {
             $workflow->is_active ='0';
         }
 
